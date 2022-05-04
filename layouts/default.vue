@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { useAppStore } from '~/store/app'
+import { fonts } from '~/utils/fontsMetaList.json'
+
+useHead({
+  link: [...fonts],
+})
 
 const appStore = useAppStore()
 onMounted(async () => {
