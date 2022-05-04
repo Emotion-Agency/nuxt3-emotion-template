@@ -15,46 +15,61 @@ const appendToScss = (path, fontname) => {
   )
 }
 
-const appendToMetaList = (path, fontname, endOfLine, cb) => {
+const appendToMetaList = (path, fontname, cb) => {
   fs.appendFile(
     path,
     `
   {
-    "rel": "preload",
-    "type": "font/woff2",
-    "href": "/fonts/${fontname}.woff2",
-    "crossorigin": "anonymous",
-    "as": "font"
-  }${endOfLine}`,
+    rel: 'preload',
+    type: 'font/woff2',
+    href: '/fonts/${fontname}.woff2',
+    crossorigin: 'anonymous',
+    as: 'font'
+  },\r\n`,
     cb
   )
 }
 
 function fontsStyle() {
   const path = './assets/styles/helpers/fonts-include.scss'
-  const path2 = './utils/fontsMetaList.json'
+  const path2 = './composables/fonts.ts'
   const buildFontsPath = './public/fonts'
 
   fs.writeFile(path, '', cb)
   fs.writeFile(path2, '', cb)
   return fs.readdir(buildFontsPath, function (_, fonts) {
     if (fonts) {
-      fs.writeFile(path2, '{\r\n"fonts": [', cb)
+      fs.writeFile(path2, 'const fontsMetaList = [', cb)
       fonts.forEach((font, i) => {
-        const endOfLine = i + 1 < fonts.length ? ',\r\n' : '\r\n'
         const fontname = font.split('.')[0]
 
         const onFinishCycle = () => {
           if (i + 1 === fonts.length) {
-            fs.appendFile(path2, '\r\n]\r\n}', cb)
+            fs.appendFile(
+              path2,
+              `\r\n]\r\nexport const useFonts = () => {
+              useHead({
+                link: [...fontsMetaList],
+              })
+            }`,
+              cb
+            )
           }
         }
 
         appendToScss(path, fontname)
-        appendToMetaList(path2, fontname, endOfLine, onFinishCycle)
+        appendToMetaList(path2, fontname, onFinishCycle)
       })
     } else {
-      fs.writeFile(path2, '{\r\n"fonts": []\r\n}', cb)
+      fs.writeFile(
+        path2,
+        `\r\nconst fontsMetaList = []\r\nexport const useFonts = () => {
+        useHead({
+          link: [...fontsMetaList],
+        })
+      }`,
+        cb
+      )
     }
   })
 }

@@ -7,7 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "fi": "node utils/fontsInclude.ts"
+    "fi": "node utils/fontsInclude.js && prettier --write ./composables/fonts.ts"
   },
   "devDependencies": {
     "@nuxtjs/eslint-module": "^3.1.0",
