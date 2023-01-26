@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { useTransition } from '~/composables/transition'
-useTransition()
+import { pageTransition } from '~~/assets/scripts/transition'
+
+definePageMeta({
+  pageTransition,
+})
 </script>
 
 <template>

@@ -2,7 +2,8 @@
   "root": true,
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es2021": true
   },
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -10,6 +11,7 @@
     "parser": "@typescript-eslint/parser"
   },
   "extends": [
+    "@nuxtjs/eslint-config-typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:nuxt/recommended",
     "plugin:vue/vue3-recommended",
@@ -35,6 +37,7 @@
     "vue/v-on-event-hyphenation": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "import/no-named-as-default": "off",
     "prettier/prettier": [
       "off",

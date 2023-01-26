@@ -3,9 +3,9 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./src/types"],
+    
     "types": [
       // ...
-      "@pinia/nuxt"
     ]
   },
 }

@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="isLoading" class="app-loader">
+    <div class="app-loader">
       <svg class="circular" viewBox="25 25 50 50">
         <circle
           class="path"
@@ -15,20 +15,3 @@
     </div>
   </transition>
 </template>
-
-<script setup lang="ts">
-// export default {
-//   computed: {
-//     isLoading() {
-//       return this.$store.state.app.loading
-//     },
-//   },
-// }
-import { useAppStore } from '~/store/app'
-
-const appStore = useAppStore()
-
-const isLoading = computed(() => {
-  appStore.loading
-})
-</script>
