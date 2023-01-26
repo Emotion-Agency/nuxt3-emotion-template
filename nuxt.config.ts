@@ -11,7 +11,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      ENVIROMENT: process.env.ENVIROMENT,
+      ENVIROMENT: process.env.NODE_ENV,
     },
   },
 })
