@@ -1,5 +1,5 @@
 {
-  "name": "nuxt3-emotion-template",
+  "name": "@emotionagency/nuxt3-emotion-template",
   "version": "1.0.0",
   "bin": "./bin/cli.js",
   "scripts": {
