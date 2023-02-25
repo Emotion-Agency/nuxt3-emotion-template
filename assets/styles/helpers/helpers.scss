@@ -32,7 +32,6 @@
   @return #{$inVH}vh;
 }
 
-@function toimg($width, $height) {
-  $resolution: (math.div($height, $width)) * 100;
-  @return #{$resolution + '%'};
+@function aspect($width, $height) {
+  @return math.div($width, $height);
 }

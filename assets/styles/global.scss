@@ -20,10 +20,6 @@ body {
   height: var(--vh);
   @include smooth-font;
 
-  @media (min-width: $br1) {
-    overflow: hidden;
-  }
-
   @media (max-width: $br1) {
     font-size: 16px;
   }

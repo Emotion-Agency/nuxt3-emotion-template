@@ -7,6 +7,13 @@ onMounted(async () => {
   const { hello } = await import('~/assets/scripts/utils/hello')
   hello()
 })
+
+useHead({
+  htmlAttrs: {
+    lang: 'en',
+    id: 'scroll-container',
+  },
+})
 </script>
 
 <template>
