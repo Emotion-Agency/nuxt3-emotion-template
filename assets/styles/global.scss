@@ -25,6 +25,11 @@ body {
   }
 }
 
+h1 {
+  @include get-size(font-size, 52, 28, 20);
+  @include get-size(margin-top, 100, 40);
+}
+
 .e-landscape {
   @include coverdiv(fixed);
   z-index: 100000;
