@@ -24,8 +24,8 @@ onMounted(async () => {
 })
 
 watch(isPopupOpen, () => {
-  if (window.ss) {
-    window.ss.disabled = isPopupOpen.value
+  if (window.escroll) {
+    window.escroll.disabled = isPopupOpen.value
   }
 })
 </script>

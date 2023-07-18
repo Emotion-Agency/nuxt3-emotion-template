@@ -3,7 +3,7 @@ import EmotionScroll from '@/assets/scripts/EmotionScroll'
 onMounted(async () => {
   const { raf } = await import('@emotionagency/utils')
 
-  window.ss = new EmotionScroll({
+  window.escroll = new EmotionScroll({
     // breakpoint: 1000,
     saveScrollPosition: true,
     passive: false,
@@ -12,13 +12,13 @@ onMounted(async () => {
     raf,
   })
 
-  window.ss.on(args => {
+  window.escroll.on(args => {
     console.log(args)
   })
 })
 
 onBeforeUnmount(() => {
-  window.ss && window.ss.destroy()
+  window.escroll && window.escroll.destroy()
 })
 </script>
 

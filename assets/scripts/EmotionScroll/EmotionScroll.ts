@@ -2,7 +2,7 @@ import VirtualScroll from 'virtual-scroll'
 import { getWindow, getDocument } from 'ssr-window'
 
 import { raf, resize, clamp, lerp } from '@emotionagency/utils'
-import Emitter from 'tiny-emitter'
+import Emitter from 'tiny-emitter/dist/tinyemitter'
 
 import { IEventArgs, IOpts, IState } from './types'
 import { getOpts } from './opts'
@@ -51,6 +51,9 @@ export default class EmotionScroll {
       this.disabled = true
       this.opts.el.scrollTop = +window.localStorage.getItem('ess') || 0
       this.scrollTop = this.opts.el.scrollTop
+      this.state.vsPosition = this.opts.el.scrollTop
+      this.state.position = this.opts.el.scrollTop
+
       this.disabled = this.opts.disabled
     }
 
@@ -153,6 +156,10 @@ export default class EmotionScroll {
 
     this.max = this.maxValue
 
+    if (this.disabled) {
+      return
+    }
+
     this.state.position = lerp(
       this.state.position,
       this.state.vsPosition,
@@ -172,6 +179,9 @@ export default class EmotionScroll {
     if (this.scrollTop !== this.opts.el.scrollTop) {
       this.state.vsPosition = this.opts.el.scrollTop
       this.scrollTop = this.opts.el.scrollTop
+      if (this.opts.saveScrollPosition) {
+        localStorage.setItem('ess', String(this.state.vsPosition))
+      }
       return
     }
 
