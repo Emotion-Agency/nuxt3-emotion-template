@@ -1,11 +1,9 @@
 <script setup lang="ts">
+import EmotionScroll from '@/assets/scripts/EmotionScroll'
 onMounted(async () => {
-  const { default: SmoothScroll } = await import(
-    '@/assets/scripts/EmotionScroll'
-  )
   const { raf } = await import('@emotionagency/utils')
 
-  window.ss = new SmoothScroll({
+  window.ss = new EmotionScroll({
     // breakpoint: 1000,
     saveScrollPosition: true,
     passive: false,
@@ -14,9 +12,9 @@ onMounted(async () => {
     raf,
   })
 
-  // window.ss.on(args => {
-  //   console.log(args)
-  // })
+  window.ss.on(args => {
+    console.log(args)
+  })
 })
 
 onBeforeUnmount(() => {

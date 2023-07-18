@@ -26,3 +26,10 @@ export interface IState {
   position?: number
   disabled?: boolean
 }
+
+export interface IEventArgs {
+  position: number
+  direction: 1 | -1
+  velocity: number
+  progress: number
+}

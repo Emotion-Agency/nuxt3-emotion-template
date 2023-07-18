@@ -4,7 +4,7 @@ import { getWindow, getDocument } from 'ssr-window'
 import { raf, resize, clamp, lerp } from '@emotionagency/utils'
 import Emitter from 'tiny-emitter'
 
-import { IOpts, IState } from './types'
+import { IEventArgs, IOpts, IState } from './types'
 import { getOpts } from './opts'
 import { keyCodes } from './keyCodes'
 import { State } from './State'
@@ -139,19 +139,11 @@ export default class EmotionScroll {
       if (this.opts.saveScrollPosition) {
         localStorage.setItem('ess', String(this.state.vsPosition))
       }
-
-      this.emitter.emit('update', {
-        position: this.state.position,
-        direction: this.state.vsPosition > this.state.position ? 1 : -1,
-        velocity: this.state.vsPosition - this.state.position,
-        isScrolling: this.state.isScrolling,
-        progress: this.state.position / this.max,
-      })
     })
   }
 
-  on(cb: (...args) => any) {
-    this.emitter.on('update', (vars: any) => {
+  on(cb: (vars: IEventArgs) => any) {
+    this.emitter.on('update', (vars: IEventArgs) => {
       cb(vars)
     })
   }
@@ -168,14 +160,23 @@ export default class EmotionScroll {
     )
     this.state.position = Math.round(this.state.position * 100) / 100
 
-    if (this.isMobile) {
-      this.state.vsPosition = this.opts.el.scrollTop
-      return
+    if (this.state.isScrolling) {
+      this.emitter.emit('update', {
+        position: this.state.position,
+        direction: this.state.vsPosition > this.state.position ? 1 : -1,
+        velocity: this.state.vsPosition - this.state.position,
+        progress: this.state.position / this.max,
+      } as IEventArgs)
     }
 
     if (this.scrollTop !== this.opts.el.scrollTop) {
       this.state.vsPosition = this.opts.el.scrollTop
       this.scrollTop = this.opts.el.scrollTop
+      return
+    }
+
+    if (this.isMobile) {
+      this.state.vsPosition = this.opts.el.scrollTop
       return
     }
 

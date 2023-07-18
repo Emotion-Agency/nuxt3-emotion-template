@@ -85,7 +85,7 @@ h1 {
   z-index: 100000;
   height: 100vh;
   height: 100dvh;
-  overflow: auto;
+  overflow: hidden;
   background-color: #ece5df;
   &.opened {
     display: block;
