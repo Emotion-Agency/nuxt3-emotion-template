@@ -1,10 +1,9 @@
 #scroll-container {
-  height: var(--vh);
-  overflow: hidden;
   will-change: scroll-position;
+  overflow: hidden;
   @media (max-width: $br1) {
-    overflow-y: auto;
     overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
@@ -24,7 +23,8 @@
   right: 0;
   top: 0;
   z-index: 10000000 !important;
-  height: var(--vh);
+  height: 100vh;
+  height: 100dvh;
   width: 12px;
   user-select: none;
   overflow: hidden;

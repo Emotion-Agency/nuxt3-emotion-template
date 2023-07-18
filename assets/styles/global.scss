@@ -7,8 +7,6 @@
 
 html {
   font-size: vw(24);
-  overflow: hidden;
-  height: var(--vh);
 }
 
 body {
@@ -17,12 +15,17 @@ body {
   position: relative;
   font-family: sans-serif;
   overscroll-behavior-y: none;
-  height: var(--vh);
   @include smooth-font;
 
   @media (max-width: $br1) {
     font-size: 16px;
   }
+}
+
+section {
+  border: 1px solid red;
+  padding: 20px;
+  margin-top: 40px;
 }
 
 h1 {
@@ -70,4 +73,25 @@ h1 {
 .page-enter,
 .page-leave-to {
   opacity: 0;
+}
+
+#section-4 {
+  position: fixed;
+  margin-top: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  z-index: 100000;
+  height: 100vh;
+  height: 100dvh;
+  overflow: auto;
+  background-color: #ece5df;
+  &.opened {
+    display: block;
+  }
+}
+
+.section-4-container {
+  height: fit-content;
 }

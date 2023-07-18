@@ -1,19 +1,22 @@
 <script setup lang="ts">
 onMounted(async () => {
-  const { SmoothScroll } = await import('@emotionagency/smoothscroll')
+  const { default: SmoothScroll } = await import(
+    '@/assets/scripts/EmotionScroll'
+  )
   const { raf } = await import('@emotionagency/utils')
 
   window.ss = new SmoothScroll({
-    mobile: false,
-    breakpoint: 1060,
+    // breakpoint: 1000,
+    saveScrollPosition: true,
     passive: false,
-    isFixed: false,
     friction: 0.07,
     stepSize: 0.9,
-    scrollbar: true,
-    useKeyboard: false,
     raf,
   })
+
+  // window.ss.on(args => {
+  //   console.log(args)
+  // })
 })
 
 onBeforeUnmount(() => {
