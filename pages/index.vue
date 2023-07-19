@@ -1,11 +1,36 @@
 <script setup lang="ts">
+import EmotionScroll from '@emotionagency/emotion-scroll'
 import { pageTransition } from '~~/assets/scripts/transition'
+
+const isPopupOpen = ref(false)
+
+onMounted(async () => {
+  const { raf } = await import('@emotionagency/utils')
+
+  window.ss2 = new EmotionScroll({
+    el: document.querySelector('#section-4'),
+    passive: false,
+    friction: 0.07,
+    disabled: true,
+    // breakpoint: 1000,
+    stepSize: 0.9,
+    raf,
+  })
+})
+
+watch(isPopupOpen, () => {
+  if (window.escroll) {
+    window.escroll.disabled = isPopupOpen.value
+  }
+
+  if (window.ss2) {
+    window.ss2.disabled = !isPopupOpen.value
+  }
+})
 
 definePageMeta({
   pageTransition,
 })
-
-const isPopupOpen = ref(false)
 </script>
 
 <template>
