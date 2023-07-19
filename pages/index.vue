@@ -6,28 +6,6 @@ definePageMeta({
 })
 
 const isPopupOpen = ref(false)
-
-onMounted(async () => {
-  const { default: SmoothScroll } = await import(
-    '@/assets/scripts/EmotionScroll'
-  )
-  const { raf } = await import('@emotionagency/utils')
-
-  window.ss2 = new SmoothScroll({
-    el: document.querySelector('#section-4'),
-    passive: false,
-    friction: 0.07,
-    // breakpoint: 1000,
-    stepSize: 0.9,
-    raf,
-  })
-})
-
-watch(isPopupOpen, () => {
-  if (window.escroll) {
-    window.escroll.disabled = isPopupOpen.value
-  }
-})
 </script>
 
 <template>

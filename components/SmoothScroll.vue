@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import EmotionScroll from '@/assets/scripts/EmotionScroll'
+import EmotionScroll from '@emotionagency/emotion-scroll'
 onMounted(async () => {
   const { raf } = await import('@emotionagency/utils')
-
+  console.log(EmotionScroll)
   window.escroll = new EmotionScroll({
     // breakpoint: 1000,
     saveScrollPosition: true,
