@@ -1,4 +1,4 @@
-#Install by CLI
+# Install by CLI
 
 ```bash
 npx @emotionagency/template <your-app-name>
