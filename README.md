@@ -1,4 +1,10 @@
-# Nuxt 3 Minimal Starter
+#Install by CLI
+
+```bash
+npx @emotionagency/template <your-app-name>
+```
+
+# Emotion Agency Nuxt 3 Template
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
