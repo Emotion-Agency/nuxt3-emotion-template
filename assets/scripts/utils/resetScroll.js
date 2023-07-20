@@ -1,13 +1,13 @@
 export const resetScroll = () => {
-  // window.ss?.reset()
-  if (window.ss) {
+  // window.escroll?.reset()
+  if (window.escroll) {
     try {
-      window.ss.reset()
+      window.escroll.reset()
     } catch (e) {
       console.log(e)
     }
   }
-  window.ss && (window.ss.isFixed = false)
+  window.escroll && (window.escroll.isFixed = false)
   setTimeout(() => {
     window.parallax && window.parallax.update()
   }, 0)

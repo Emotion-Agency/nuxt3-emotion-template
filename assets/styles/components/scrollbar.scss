@@ -1,5 +1,4 @@
 #scroll-container {
-  height: var(--vh);
   overflow: hidden;
   will-change: scroll-position;
   @media (max-width: $br1) {
@@ -24,7 +23,8 @@
   right: 0;
   top: 0;
   z-index: 10000000 !important;
-  height: var(--vh);
+  height: 100vh;
+  height: dvh;
   width: 12px;
   user-select: none;
   overflow: hidden;
