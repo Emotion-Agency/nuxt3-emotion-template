@@ -7,8 +7,8 @@ onMounted(async () => {
     // breakpoint: 1000,
     saveScrollPosition: true,
     passive: false,
-    friction: 0.07,
-    stepSize: 0.9,
+    friction: 0.1,
+    stepSize: 0.2,
     raf,
   })
 
