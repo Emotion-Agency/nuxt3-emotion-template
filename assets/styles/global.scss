@@ -78,13 +78,13 @@ h1 {
 #section-4 {
   position: fixed;
   margin-top: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 50vw;
+  height: 50vh;
   display: none;
   z-index: 100000;
-  height: 100vh;
-  height: 100dvh;
   overflow: hidden;
   background-color: #ece5df;
   &.opened {
@@ -93,5 +93,7 @@ h1 {
 }
 
 .section-4-container {
-  height: fit-content;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }

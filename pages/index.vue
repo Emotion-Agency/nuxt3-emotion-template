@@ -8,7 +8,7 @@ onMounted(async () => {
   const { raf } = await import('@emotionagency/utils')
 
   window.ss2 = new EmotionScroll({
-    el: document.querySelector('#section-4'),
+    el: document.querySelector('.section-4-container'),
     passive: false,
     friction: 0.07,
     disabled: true,
