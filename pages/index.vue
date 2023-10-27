@@ -7,5 +7,5 @@ definePageMeta({
 </script>
 
 <template>
-  <h1>Hello from Emotion!</h1>
+  <h1 class="22">Hello from Emotion!</h1>
 </template>
