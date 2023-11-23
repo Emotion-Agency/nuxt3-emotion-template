@@ -4,6 +4,18 @@
 npx @emotionagency/template <your-app-name>
 ```
 
+# Template has CLI to easy create components and pages
+
+### If you want co create page you can write in your command line:
+```bash
+npm run create page <page-name>
+```
+
+### If you want co create component you can write in your command line:
+```bash
+npm run create component <component-name>
+```
+
 # Emotion Agency Nuxt 3 Template
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
