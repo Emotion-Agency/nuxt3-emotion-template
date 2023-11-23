@@ -1,5 +1,5 @@
 import gsap from 'gsap'
-import { TransitionProps } from 'nuxt/dist/app/compat/capi'
+import type { TransitionProps } from 'nuxt/dist/app/compat/capi'
 
 export const pageTransition: TransitionProps = {
   duration: 250,

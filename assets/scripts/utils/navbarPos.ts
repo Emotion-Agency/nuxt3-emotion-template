@@ -1,6 +1,10 @@
 import { raf } from '@emotionagency/utils'
 
 export default class NavbarPos {
+  scrollPos = 0
+  mouseFunc: (e: MouseEvent) => void
+  top = 0
+
   $sc = document.querySelector('#scroll-container')
   hovered = false
 
@@ -49,7 +53,7 @@ export default class NavbarPos {
   }
 
   get isFixed() {
-    return window.smoothScroll ? window.smoothScroll.isFixed : false
+    return window.escroll ? window.escroll.disabled : false
   }
 
   addVisibility() {

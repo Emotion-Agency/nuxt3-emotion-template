@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { pageTransition } from '~~/assets/scripts/transition'
+import { pageTransition } from '~/assets/scripts/transition'
 
 definePageMeta({
   pageTransition,

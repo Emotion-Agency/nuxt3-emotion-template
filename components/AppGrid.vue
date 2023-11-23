@@ -1,12 +1,3 @@
- <template>
-  <div
-    class="app-grid container grid"
-    :class="{ 'app-grid--visible': isVisible }"
-  >
-    <div v-for="n in 12" :key="n" class="app-grid__col"></div>
-  </div>
-</template>
-
 <script>
 export default {
   data() {
@@ -32,3 +23,12 @@ export default {
   },
 }
 </script>
+
+<template>
+  <div
+    class="app-grid container grid"
+    :class="{ 'app-grid--visible': isVisible }"
+  >
+    <div v-for="n in 12" :key="n" class="app-grid__col"></div>
+  </div>
+</template>
