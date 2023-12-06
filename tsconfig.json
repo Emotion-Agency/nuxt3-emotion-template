@@ -2,7 +2,6 @@
   // https://v3.nuxtjs.org/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "module": "es6",
     "typeRoots": ["./node_modules/@types", "./src/types"],
     
     "types": [

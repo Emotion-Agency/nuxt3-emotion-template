@@ -4,9 +4,9 @@ import { useFonts } from '~/composables/fonts'
 useFonts()
 
 onMounted(async () => {
-  const { hello } = await import('~/assets/scripts/utils/hello')
+  const { hello } = await import('~/utils/hello')
   const { detectOrientationChanges } = await import(
-    '~/assets/scripts/utils/detectLandscapeOrientation'
+    '~/utils/detectLandscapeOrientation'
   )
 
   detectOrientationChanges()
