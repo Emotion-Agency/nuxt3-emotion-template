@@ -1,10 +1,4 @@
-<script setup lang="ts">
-import { pageTransition } from '~/assets/scripts/transition'
-
-definePageMeta({
-  pageTransition,
-})
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <h1 class="22">Hello from Emotion!</h1>
