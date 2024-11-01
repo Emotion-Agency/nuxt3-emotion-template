@@ -4,10 +4,12 @@ import { keysGenerator } from '@emotionagency/utils'
 interface IProps {
   isOpen: boolean
   duration?: number
+  transitionName?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   duration: 0.3,
+  transitionName: 'fade',
 })
 
 const emit = defineEmits(['close'])
@@ -64,7 +66,6 @@ watch(
     }
 
     setTimeout(() => {
-      console.log(props.isOpen)
       $window.value?.classList.toggle('is-open', props.isOpen)
     }, 1)
   }
@@ -72,7 +73,7 @@ watch(
 </script>
 
 <template>
-  <Teleport to="#teleports">
+  <Transition :name="transitionName">
     <div
       v-show="isActualOpen"
       :data-open="isOpen"
@@ -95,5 +96,5 @@ watch(
       ></button>
       <slot />
     </div>
-  </Teleport>
+  </Transition>
 </template>
