@@ -1,22 +1,6 @@
-<script lang="ts" setup>
-interface IProps {
-  size?: number
-}
-
-const props = withDefaults(defineProps<IProps>(), {
-  size: 1,
-})
-
-const BASE_SIZE = 20
-
-const height = computed(() => {
-  return props.size * BASE_SIZE + 'px'
-})
-</script>
-
 <template>
   <transition name="fade">
-    <div class="headless-loader" :style="{ height, width: height }">
+    <div class="headless-loader" :style="{ height: '1em', width: '1em' }">
       <svg class="circular" viewBox="25 25 50 50">
         <circle
           class="path"
