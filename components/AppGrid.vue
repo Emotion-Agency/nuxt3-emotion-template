@@ -1,27 +1,22 @@
-<script>
-export default {
-  data() {
-    return {
-      isVisible: false,
-    }
-  },
-  mounted() {
-    document.addEventListener('keypress', this.toggleView)
-  },
-  beforeUnmount() {
-    document.removeEventListener('keypress', this.toggleView)
-  },
-  methods: {
-    toggleView(e) {
-      if (process.env.NODE_ENV === 'production') {
-        return
-      }
-      if (e.keyCode === 103 || e.keyCode === 1087) {
-        this.isVisible = !this.isVisible
-      }
-    },
-  },
+<script lang="ts" setup>
+const isVisible = ref(false)
+
+const toggleView = e => {
+  if (process.env.NODE_ENV === 'production') {
+    return
+  }
+  if (e.keyCode === 103 || e.keyCode === 1087) {
+    isVisible.value = !isVisible.value
+  }
 }
+
+onMounted(() => {
+  document.addEventListener('keypress', toggleView)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keypress', toggleView)
+})
 </script>
 
 <template>
