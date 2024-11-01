@@ -1,5 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1 class="22">Hello from Emotion!</h1>
+  <main>
+    <h1 class="22">Hello from Emotion!</h1>
+    <HeadlessButton>Go to About</HeadlessButton>
+    <HeadlessLoader :size="1" />
+  </main>
 </template>

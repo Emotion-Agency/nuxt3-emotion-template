@@ -1,6 +1,22 @@
+<script lang="ts" setup>
+interface IProps {
+  size?: number
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  size: 1,
+})
+
+const BASE_SIZE = 20
+
+const height = computed(() => {
+  return props.size * BASE_SIZE + 'px'
+})
+</script>
+
 <template>
   <transition name="fade">
-    <div class="app-loader">
+    <div class="headless-loader" :style="{ height, width: height }">
       <svg class="circular" viewBox="25 25 50 50">
         <circle
           class="path"
@@ -17,29 +33,17 @@
 </template>
 
 <style lang="scss" scoped>
-.app-loader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: vw(80);
-  height: vw(80);
+.headless-loader {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
-  background-color: var(--white);
   border-radius: 50%;
-  @media (max-width: $br1) {
-    width: size(80, 46);
-    height: size(80, 46);
-  }
 }
 
 .circular {
   animation: rotate 2s linear infinite;
-  height: 50%;
   transform-origin: center center;
-  width: 50%;
   position: absolute;
   margin: auto;
 }
@@ -49,7 +53,7 @@
   stroke-dashoffset: 0;
   animation: dash 1.5s ease-in-out infinite;
   stroke-linecap: round;
-  stroke: blue;
+  stroke: currentColor;
 }
 
 @keyframes rotate {
