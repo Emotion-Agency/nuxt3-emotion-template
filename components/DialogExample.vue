@@ -9,22 +9,24 @@ const openModal = (value: boolean) => {
 <template>
   <div>
     <HeadlessButton @click="openModal(true)">Open</HeadlessButton>
-    <HeadlessDialogModal
-      class="dialog"
-      :is-open="isModalOpen"
-      :duration="0.3"
-      @close="openModal(false)"
-    >
-      <HeadlessDialogBackdrop
-        class="dialog-backdrop"
-        @click="openModal(false)"
-      ></HeadlessDialogBackdrop>
-      <HeadlessDialogWindow class="dialog-window">
-        <h3>Delete title</h3>
-        <p>Dialog content</p>
-        <HeadlessButton @click="openModal(false)">Close</HeadlessButton>
-      </HeadlessDialogWindow>
-    </HeadlessDialogModal>
+    <Teleport to="#teleports">
+      <HeadlessDialogModal
+        class="dialog"
+        :is-open="isModalOpen"
+        :duration="0.3"
+        @close="openModal(false)"
+      >
+        <HeadlessDialogBackdrop
+          class="dialog-backdrop"
+          @click="openModal(false)"
+        ></HeadlessDialogBackdrop>
+        <HeadlessDialogWindow class="dialog-window">
+          <h3>Delete title</h3>
+          <p>Dialog content</p>
+          <HeadlessButton @click="openModal(false)">Close</HeadlessButton>
+        </HeadlessDialogWindow>
+      </HeadlessDialogModal>
+    </Teleport>
   </div>
 </template>
 
