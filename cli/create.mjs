@@ -50,6 +50,10 @@ const vueComponentContent = componentName => {
   <template>
     <h1>${componentName}</h1>
   </template>
+
+  <style scoped lang="scss">
+
+  </style>
 `
 }
 
@@ -66,14 +70,11 @@ const vuePageContent = pageName => {
   <template>
     <h1>${pageName}</h1>
   </template>
-`
-}
 
-const appendToScss = async (path, fileName) => {
-  const importStatement = `@import './${fileName}.scss';\n`
-  await fs.appendFile(path, importStatement, () => {
-    console.log(`Added imports for '${fileName}' to ${path}`)
-  })
+  <style scoped lang="scss">
+    
+  </style>
+`
 }
 
 // Define the 'component' command
@@ -82,10 +83,6 @@ program
   .description('Create a new Vue component')
   .action(async componentName => {
     const vueFilePath = `./components/${toCamelCase(componentName)}.vue`
-    const cssFilePath = `./assets/styles/components/${toDashCase(
-      componentName
-    )}.scss`
-    const styleFilePath = `./assets/styles/components/all.scss`
 
     if (!fs.existsSync(vueFilePath)) {
       await fs.writeFile(
@@ -96,14 +93,6 @@ program
           formatFile(vueFilePath)
         }
       )
-
-      await fs.writeFile(cssFilePath, '', () => {
-        console.log(`Created file: ${cssFilePath}`)
-      })
-
-      if (fs.existsSync(styleFilePath)) {
-        await appendToScss(styleFilePath, componentName)
-      }
     } else {
       console.error(`Error: Component '${componentName}' already exists.`)
     }
@@ -114,8 +103,6 @@ program
   .description('Create a new Vue page')
   .action(async pageName => {
     const vueFilePath = `./pages/${toDashCase(pageName)}.vue`
-    const cssFilePath = `./assets/styles/pages/${toDashCase(pageName)}.scss`
-    const styleFilePath = `./assets/styles/pages/all.scss`
 
     if (!fs.existsSync(vueFilePath)) {
       await fs.writeFile(
@@ -126,13 +113,6 @@ program
           formatFile(vueFilePath)
         }
       )
-      await fs.writeFile(cssFilePath, '', () => {
-        console.log(`Created file: ${cssFilePath}`)
-      })
-
-      if (fs.existsSync(styleFilePath)) {
-        await appendToScss(styleFilePath, pageName)
-      }
     } else {
       console.error(`Error: Page '${pageName}' already exists.`)
     }

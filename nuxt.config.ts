@@ -1,10 +1,10 @@
 import { pageTransition } from './transitions/base'
 
 export default defineNuxtConfig({
-  css: ['@/assets/styles/index.scss'],
-
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
+
+  css: ['~/assets/styles/index.scss'],
 
   app: {
     pageTransition,
@@ -12,5 +12,15 @@ export default defineNuxtConfig({
 
   typescript: {
     strict: false,
+  },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "~/assets/styles/helpers/all.scss";',
+        },
+      },
+    },
   },
 })
