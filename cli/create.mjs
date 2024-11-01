@@ -60,11 +60,6 @@ const vueComponentContent = componentName => {
 const vuePageContent = pageName => {
   return `
   <script setup lang="ts">
-  import { pageTransition } from '~/assets/scripts/transition'
-
-  definePageMeta({
-    pageTransition,
-  })
   </script>
 
   <template>
