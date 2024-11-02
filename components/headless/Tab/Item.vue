@@ -29,7 +29,6 @@ const isActive = computed(() => activeTab.value === index.value)
     :class="{ 'is-active': isActive }"
     :aria-labelledby="tabs[index]"
     tabindex="0"
-    class="tab-panel"
   >
     <slot></slot>
   </component>
