@@ -5,7 +5,7 @@ interface IProps {
   selectedIndex?: number
 }
 
-withDefaults(defineProps<IProps>(), {
+const props = withDefaults(defineProps<IProps>(), {
   as: 'div',
   defaultIndex: 0,
   selectedIndex: 0,
@@ -14,16 +14,29 @@ withDefaults(defineProps<IProps>(), {
 const emit = defineEmits(['change'])
 
 const { activeTab, init, panels, registerPanel, registerTab, tabs } =
-  useHeadlessTabs()
+  useHeadlessTabs(props.defaultIndex)
 
 onMounted((): void => {
   init()
+
+  if (props.selectedIndex !== undefined) {
+    setActiveTab(props.selectedIndex)
+  }
 })
 
 function setActiveTab(index: number) {
   activeTab.value = index
   emit('change', index)
 }
+
+watch(
+  () => props.selectedIndex,
+  index => {
+    if (index !== undefined) {
+      setActiveTab(index)
+    }
+  }
+)
 
 provide('activeTab', activeTab)
 provide('setActiveTab', setActiveTab)

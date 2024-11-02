@@ -7,6 +7,5 @@
     <HeadlessLoader />
     <DialogExample />
     <TabsExample />
-    <TabsExample />
   </main>
 </template>

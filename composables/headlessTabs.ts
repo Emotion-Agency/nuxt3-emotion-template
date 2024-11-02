@@ -1,7 +1,7 @@
-export const useHeadlessTabs = () => {
+export const useHeadlessTabs = (defaultIndex: number) => {
   const renderId = ref(useId())
 
-  const activeTab = ref(0)
+  const activeTab = ref(defaultIndex)
   const tabs = ref<string[]>([])
   const panels = ref<string[]>([])
 

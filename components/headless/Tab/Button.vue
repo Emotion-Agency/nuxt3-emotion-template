@@ -43,6 +43,7 @@ function handleKeydown(event: KeyboardEvent) {
     :id="tabId"
     :aria-disabled="disabled"
     :disabled="disabled"
+    :class="{ 'is-active': isSelected }"
     data-tabs-button
     :aria-selected="isSelected"
     :aria-controls="panels[index]"

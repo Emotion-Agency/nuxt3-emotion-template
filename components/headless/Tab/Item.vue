@@ -23,9 +23,10 @@ const isActive = computed(() => activeTab.value === index.value)
   <component
     :is="as"
     :id="panelId"
-    v-show="isActive"
+    v-if="isActive"
     data-tabs-item
     role="tabpanel"
+    :class="{ 'is-active': isActive }"
     :aria-labelledby="tabs[index]"
     tabindex="0"
     class="tab-panel"
