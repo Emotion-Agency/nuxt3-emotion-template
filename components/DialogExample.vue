@@ -21,7 +21,7 @@ const openModal = (value: boolean) => {
           @click="openModal(false)"
         ></HeadlessDialogBackdrop>
         <HeadlessDialogWindow class="dialog-window">
-          <h3>Delete title</h3>
+          <h3>Dialog title</h3>
           <p>Dialog content</p>
           <HeadlessButton @click="openModal(false)">Close</HeadlessButton>
         </HeadlessDialogWindow>
