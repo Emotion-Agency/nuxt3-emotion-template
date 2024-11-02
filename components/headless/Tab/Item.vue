@@ -3,36 +3,30 @@ interface IProps {
   as?: string
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+withDefaults(defineProps<IProps>(), {
   as: 'div',
 })
+
 const activeTab: Ref<number> = inject('activeTab')
-const panelRefs: Ref<any> = inject('panelRefs')
+const tabs: Ref<HTMLElement[]> = inject('tabs')
+const panels: Ref<HTMLElement[]> = inject('panels')
+const registerPanel: any = inject('registerPanel')
 
-const panelElement = ref<HTMLElement | null>(null)
+const panelId = registerPanel()
 
-const index = computed(() => panelRefs.value.indexOf(panelElement.value))
+const index = computed(() => panels.value.indexOf(panelId))
 
-onMounted(() => {
-  if (panelElement.value) {
-    panelRefs.value.push(panelElement.value)
-  }
-
-  console.log(panelElement.value)
-})
-
-const tabId = `tab-${index.value}`
 const isActive = computed(() => activeTab.value === index.value)
 </script>
 
 <template>
   <component
-    ref="panelElement"
     :is="as"
+    :id="panelId"
     v-show="isActive"
     data-tabs-item
     role="tabpanel"
-    :aria-labelledby="tabId"
+    :aria-labelledby="tabs[index]"
     tabindex="0"
     class="tab-panel"
   >

@@ -13,7 +13,12 @@ withDefaults(defineProps<IProps>(), {
 
 const emit = defineEmits(['change'])
 
-const activeTab = ref(0)
+const { activeTab, init, panels, registerPanel, registerTab, tabs } =
+  useHeadlessTabs()
+
+onMounted((): void => {
+  init()
+})
 
 function setActiveTab(index: number) {
   activeTab.value = index
@@ -23,10 +28,11 @@ function setActiveTab(index: number) {
 provide('activeTab', activeTab)
 provide('setActiveTab', setActiveTab)
 
-const tabRefs = ref([])
-const panelRefs = ref([])
-provide('tabRefs', tabRefs)
-provide('panelRefs', panelRefs)
+provide('tabs', tabs)
+provide('panels', panels)
+
+provide('registerTab', registerTab)
+provide('registerPanel', registerPanel)
 </script>
 
 <template>

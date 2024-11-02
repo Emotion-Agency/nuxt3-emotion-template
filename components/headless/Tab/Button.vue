@@ -9,19 +9,13 @@ withDefaults(defineProps<IProps>(), {
 })
 const activeTab: Ref<number> = inject('activeTab')
 const setActiveTab: any = inject('setActiveTab')
+const tabs: Ref<HTMLElement[]> = inject('tabs')
+const panels: Ref<HTMLElement[]> = inject('panels')
+const registerTab: any = inject('registerTab')
 
-const tabRefs: Ref<any> = inject('tabRefs')
+const tabId = registerTab()
 
-const tabElement = ref<HTMLElement | null>(null)
-const index = computed(() => tabRefs.value.indexOf(tabElement.value))
-
-onMounted(() => {
-  if (tabElement.value) {
-    tabRefs.value.push(tabElement.value)
-  }
-
-  console.log(tabRefs.value)
-})
+const index = computed(() => tabs.value.indexOf(tabId))
 
 const isSelected = computed(() => activeTab.value === index.value)
 
@@ -33,24 +27,25 @@ function handleKeydown(event: KeyboardEvent) {
   const keys = { ArrowRight: 1, ArrowLeft: -1 }
   if (keys[event.key] !== undefined) {
     event.preventDefault()
-    setActiveTab((activeTab.value + keys[event.key] + 3) % 3)
+    const nextIndex =
+      (activeTab.value + keys[event.key] + tabs.value.length) %
+      tabs.value.length
+    setActiveTab(nextIndex)
   }
 }
-
-// const tabId = `tab-${index.value}`;
-const panelId = `panel-${index.value}`
 </script>
 
 <template>
   <component
-    ref="tabElement"
+    :key="tabId"
     :is="as"
     :role="'tab'"
+    :id="tabId"
     :aria-disabled="disabled"
     :disabled="disabled"
     data-tabs-button
     :aria-selected="isSelected"
-    :aria-controls="panelId"
+    :aria-controls="panels[index]"
     :tabindex="isSelected ? 0 : -1"
     @click="selectTab"
     @keydown="handleKeydown"
