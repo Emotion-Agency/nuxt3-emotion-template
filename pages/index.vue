@@ -6,5 +6,6 @@
 
     <HeadlessLoader />
     <DialogExample />
+    <TabsExample />
   </main>
 </template>
