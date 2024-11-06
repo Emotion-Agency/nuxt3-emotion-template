@@ -42,7 +42,7 @@
     "vue/no-v-html": "off",
     "vue/html-self-closing": "off",
     "vue/singleline-html-element-content-newline": "off",
-    "vue/script-setup-no-uses-vars": "warn",
+    "vue/script-setup-no-uses-vars": "on",
     "vue/multi-word-component-names": "off",
     "vue/v-on-event-hyphenation": "off",
     "@typescript-eslint/no-unused-vars": "warn",

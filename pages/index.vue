@@ -5,7 +5,10 @@
     <h1 class="22">Hello from Emotion!</h1>
 
     <HeadlessLoader />
-    <DialogExample />
-    <TabsExample />
+    <ExamplesDialog />
+    <ExamplesTabs />
+    <ExamplesField />
+    <ExamplesPasswordField />
+    <!-- <HeadlessInputNumber :min="1" :max="10" id="number" /> -->
   </main>
 </template>
