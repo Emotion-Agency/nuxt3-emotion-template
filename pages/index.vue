@@ -9,6 +9,6 @@
     <ExamplesTabs />
     <ExamplesField />
     <ExamplesPasswordField />
-    <!-- <HeadlessInputNumber :min="1" :max="10" id="number" /> -->
+    <HeadlessInputNumber :min="1" :max="10" id="number" />
   </main>
 </template>

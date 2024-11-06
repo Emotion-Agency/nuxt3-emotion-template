@@ -11,9 +11,7 @@ export function provideInputContext(
 }
 
 export function useInputContext(): Ref<IInputContext> {
-  const context = inject<Ref<IInputContext>>(InputContextKey)
-  if (!context) {
-    throw new Error('Input context not found. Make sure to provide it first.')
-  }
+  const context = inject<Ref<IInputContext>>(InputContextKey, null)
+
   return context
 }
