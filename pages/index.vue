@@ -9,6 +9,13 @@
     <ExamplesTabs />
     <ExamplesField />
     <ExamplesPasswordField />
-    <HeadlessInputNumber :min="1" :max="10" id="number" />
+    <HeadlessInputNumber
+      style="min-width: 300px"
+      :min="1"
+      :max="10"
+      id="number"
+      placeholder="Number"
+    />
+    <ExamplesTextarea :rows="10" />
   </main>
 </template>

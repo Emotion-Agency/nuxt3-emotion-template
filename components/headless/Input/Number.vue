@@ -1,21 +1,64 @@
 <script lang="ts" setup>
-import type { IInput } from '~/types/input'
+import type { IInput, TInputEmits } from '~/types/input'
 
-interface IProps extends IInput {
+interface IProps extends Omit<IInput, 'type'> {
   min: number
   max: number
   step?: number
 }
 
 const props = defineProps<IProps>()
+
+const emit = defineEmits<TInputEmits>()
+
+const { $input, error, inputValue, isFocused, onBlur, onFocus, onChange } =
+  useInput(props, emit)
+
+const onNumberChange = () => {
+  const value = parseFloat(inputValue.value)
+
+  if (isNaN(value)) {
+    inputValue.value = ''
+    onChange()
+  }
+
+  if (value < props.min) {
+    inputValue.value = props.min?.toString()
+    onChange()
+
+    return
+  }
+
+  if (value > props.max) {
+    inputValue.value = props.max?.toString()
+    onChange()
+
+    return
+  }
+
+  onChange()
+}
 </script>
 
 <template>
-  <HeadlessInput
-    v-bind="props"
+  <input
+    ref="$input"
     type="number"
-    :min="min"
-    :max="max"
-    :step="step"
+    v-model="inputValue"
+    data-input
+    :data-focused="isFocused"
+    :required="required"
+    :id="id"
+    :name="name"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    :autofocus="autoFocus"
+    :aria-invalid="!!error"
+    :min="props.min"
+    :max="props.max"
+    :step="props.step"
+    @input="onNumberChange"
+    @focus="onFocus"
+    @blur="onBlur"
   />
 </template>

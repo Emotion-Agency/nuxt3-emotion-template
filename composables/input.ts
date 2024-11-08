@@ -28,8 +28,7 @@ export const useInput = (props: IInput, emit: TInputEmits) => {
     }
   }
 
-  const onChange = (e: InputEvent) => {
-    inputValue.value = (e.target as HTMLInputElement).value
+  const onChange = () => {
     validate()
 
     emit('input', {
@@ -75,6 +74,7 @@ export const useInput = (props: IInput, emit: TInputEmits) => {
   watch(
     () => props.value,
     () => {
+      console.log(props.value)
       inputValue.value = props.value
       updateFields()
     }

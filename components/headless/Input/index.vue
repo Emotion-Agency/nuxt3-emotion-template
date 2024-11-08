@@ -28,6 +28,7 @@ defineExpose({
 <template>
   <input
     ref="$input"
+    v-model="inputValue"
     data-input
     :data-focused="isFocused"
     :required="required"
