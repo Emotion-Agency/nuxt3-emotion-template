@@ -3,6 +3,7 @@ import type { IInput, TInputEmits } from '~/types/input'
 
 interface IProps extends IInput {
   rows?: number
+  disableResize?: boolean
 }
 
 const props = defineProps<IProps>()
@@ -28,6 +29,7 @@ const { $input, error, inputValue, isFocused, onBlur, onChange, onFocus } =
     :autofocus="autoFocus"
     :aria-invalid="!!error"
     :rows="rows"
+    :style="{ resize: disableResize ? 'none' : 'auto' }"
     @input="onChange"
     @focus="onFocus"
     @blur="onBlur"

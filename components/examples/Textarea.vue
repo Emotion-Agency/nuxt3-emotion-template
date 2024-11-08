@@ -19,6 +19,7 @@ const input = reactive({
     :placeholder="input.placeholder"
     :required="input.required"
     :validators="input.validators"
+    :disable-resize="true"
     type="textarea"
   />
 </template>
