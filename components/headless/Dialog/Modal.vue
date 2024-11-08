@@ -23,7 +23,9 @@ const $focusGuard = ref<HTMLElement | null>(null)
 const $window = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  $window.value = $el.value?.querySelector('[data-dialog-window]')
+  $window.value = $el.value?.querySelector(
+    '[data-dialog-window]'
+  ) as HTMLElement
 
   if (!$window.value) {
     throw new Error('Dialog window not found')
