@@ -17,5 +17,6 @@
       placeholder="Number"
     />
     <ExamplesTextarea :rows="10" />
+    <ExamplesCheckbox />
   </main>
 </template>
