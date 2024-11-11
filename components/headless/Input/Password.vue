@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IInput } from '~/types/input'
+import type { IInput } from '~/types/headless/input'
 
 interface IProps extends IInput {
   isPasswordVisible: boolean

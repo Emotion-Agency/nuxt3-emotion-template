@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { IInput, TInputEmits } from '~/types/input'
+import { useInput } from '~/composables/headless/input'
+import type { IInput, TInputEmits } from '~/types/headless/input'
 
 const props = withDefaults(defineProps<IInput>(), {
   type: 'text',
@@ -35,7 +36,6 @@ defineExpose({
     :id="id"
     :name="name"
     :type="type"
-    :value="inputValue"
     :disabled="disabled"
     :placeholder="placeholder"
     :autofocus="autoFocus"

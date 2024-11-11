@@ -13,8 +13,8 @@ const { $input, checked, error, onBlur, onChange, onFocus, isFocused } =
 <template>
   <input
     ref="$input"
-    type="checkbox"
-    data-checkbox
+    type="radio"
+    data-radio
     :id="id"
     :name="name"
     :required="required"

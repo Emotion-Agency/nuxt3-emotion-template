@@ -26,3 +26,18 @@ export type TInputEmits = {
   (event: 'blur'): void
   (event: 'error', error: string): void
 }
+
+export interface ICheckbox
+  extends Omit<IInput, 'type' | 'placeholder' | 'validators'> {
+  checked?: boolean
+}
+
+export interface iCheckboxData {
+  id: string
+  checked: boolean
+  error: boolean
+}
+
+export type TCheckboxEmits = {
+  (event: 'change', value: iCheckboxData): void
+}

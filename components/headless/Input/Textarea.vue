@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { IInput, TInputEmits } from '~/types/input'
+import { useInput } from '~/composables/headless/input'
+import type { IInput, TInputEmits } from '~/types/headless/input'
 
 interface IProps extends IInput {
   rows?: number

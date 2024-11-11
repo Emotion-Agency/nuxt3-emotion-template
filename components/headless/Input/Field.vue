@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { provideInputContext } from '~/composables/headless/inputContext'
+
 interface IProps {
   as?: string
 }

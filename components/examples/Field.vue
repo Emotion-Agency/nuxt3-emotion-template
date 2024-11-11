@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { iInputData } from '~/types/input'
+import type { iInputData } from '~/types/headless/input'
 
 const input = reactive({
   id: 'name',

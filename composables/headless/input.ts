@@ -1,4 +1,5 @@
-import type { IInput, iInputData, TInputEmits } from '~/types/input'
+import type { IInput, iInputData, TInputEmits } from '~/types/headless/input'
+import { useInputContext } from './inputContext'
 
 export const useInput = (props: IInput, emit: TInputEmits) => {
   const inputCtx = useInputContext()

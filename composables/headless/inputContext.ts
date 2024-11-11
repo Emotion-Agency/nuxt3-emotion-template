@@ -1,4 +1,4 @@
-import type { IInputContext } from '~/types/input'
+import type { IInputContext } from '~/types/headless/input'
 
 const InputContextKey = 'inputContext'
 

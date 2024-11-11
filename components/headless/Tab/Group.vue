@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useHeadlessTabs } from '~/composables/headless/headlessTabs'
+
 interface IProps {
   as?: string
   defaultIndex?: number
