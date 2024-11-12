@@ -18,6 +18,7 @@ export interface IInput {
 
 export interface IInputContext extends IInput {
   error: boolean | string
+  value: any
 }
 
 export type TInputEmits = {
@@ -40,4 +41,47 @@ export interface iCheckboxData {
 
 export type TCheckboxEmits = {
   (event: 'change', value: iCheckboxData): void
+}
+
+export interface iSelectData {
+  id: string
+  value: string | number
+  label: string
+  error: boolean
+}
+
+export interface ISelectBase {
+  as?: string
+  id: string
+  disabled?: boolean
+  required?: boolean
+  autoFocus?: boolean
+  name?: string
+  validators?: Array<(value: string) => boolean | string>
+}
+
+export interface ISelectSingle extends ISelectBase {
+  multiple?: false
+  modelValue?: iSelectData
+}
+
+export interface ISelectMultiple extends ISelectBase {
+  multiple: true
+  modelValue?: iSelectData[]
+}
+
+export type ISelect = ISelectSingle | ISelectMultiple
+
+export interface IOption {
+  value: string
+  label: string
+}
+
+export interface ISelectOption extends IOption {
+  ref: Ref<HTMLElement>
+}
+
+export type TSelectEmits = {
+  (event: 'update:modelValue', value: iSelectData | iSelectData[]): void
+  (event: 'error', error: string): void
 }
