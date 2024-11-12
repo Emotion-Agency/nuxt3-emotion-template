@@ -53,6 +53,19 @@ const validate = () => {
   }
 }
 
+watch(
+  () => props.modelValue,
+  item => {
+    const option = options.find(option => option.value === item?.value)
+
+    if (option) {
+      selectedOption.value = option
+    } else {
+      selectedOption.value = null
+    }
+  }
+)
+
 function selectOption(option: IOption) {
   selectedOption.value = option
 

@@ -50,27 +50,16 @@ export interface iSelectData {
   error: boolean
 }
 
-export interface ISelectBase {
+export interface ISelect {
   as?: string
   id: string
   disabled?: boolean
   required?: boolean
   autoFocus?: boolean
   name?: string
+  modelValue?: iSelectData
   validators?: Array<(value: string) => boolean | string>
 }
-
-export interface ISelectSingle extends ISelectBase {
-  multiple?: false
-  modelValue?: iSelectData
-}
-
-export interface ISelectMultiple extends ISelectBase {
-  multiple: true
-  modelValue?: iSelectData[]
-}
-
-export type ISelect = ISelectSingle | ISelectMultiple
 
 export interface IOption {
   value: string
