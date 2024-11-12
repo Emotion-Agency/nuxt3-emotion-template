@@ -142,6 +142,10 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('click', handleOutsideClick)
 })
+
+defineExpose({
+  toggleDropdown,
+})
 </script>
 
 <template>
