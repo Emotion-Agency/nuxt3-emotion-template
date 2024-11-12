@@ -20,6 +20,7 @@ const input = reactive({
     :required="input.required"
     :validators="input.validators"
     :disable-resize="true"
+    v-model="input.value"
     type="textarea"
   />
 </template>

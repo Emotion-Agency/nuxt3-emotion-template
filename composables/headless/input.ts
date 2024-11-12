@@ -1,7 +1,12 @@
 import type { IInput, iInputData, TInputEmits } from '~/types/headless/input'
 import { useInputContext } from './inputContext'
+import type { ModelRef } from 'vue'
 
-export const useInput = (props: IInput, emit: TInputEmits) => {
+export const useInput = (
+  props: IInput,
+  emit: TInputEmits,
+  model: ModelRef<string>
+) => {
   const inputCtx = useInputContext()
 
   if (inputCtx) {
@@ -9,7 +14,6 @@ export const useInput = (props: IInput, emit: TInputEmits) => {
   }
 
   const $input = ref<HTMLInputElement | null>(null)
-  const inputValue = ref(props.value)
 
   const error = ref<boolean | string>(false)
   const isFocused = ref(false)
@@ -17,11 +21,11 @@ export const useInput = (props: IInput, emit: TInputEmits) => {
   const validate = () => {
     if (props.validators) {
       const falsyValidator = props.validators.find(validator =>
-        validator(inputValue.value)
+        validator(model.value)
       )
 
       if (falsyValidator) {
-        error.value = falsyValidator(inputValue.value)
+        error.value = falsyValidator(model.value)
         emit('error', error.value as string)
       } else {
         error.value = false
@@ -34,14 +38,14 @@ export const useInput = (props: IInput, emit: TInputEmits) => {
 
     emit('input', {
       id: props.id,
-      value: inputValue.value,
+      value: model.value,
       error: !!error.value,
     } as iInputData)
 
     if (inputCtx) {
       inputCtx.value = {
         ...inputCtx.value,
-        value: inputValue.value,
+        value: model.value,
         error: error.value,
       }
     }
@@ -58,32 +62,22 @@ export const useInput = (props: IInput, emit: TInputEmits) => {
   }
 
   const reset = () => {
-    inputValue.value = ''
+    model.value = ''
     error.value = false
   }
 
   const updateFields = () => {
-    if (inputValue.value.trim() !== '') {
+    if (model.value.trim() !== '') {
       emit('input', {
         id: props.id,
-        value: inputValue.value,
+        value: model.value,
         error: error.value,
       } as iInputData)
     }
   }
 
-  watch(
-    () => props.value,
-    () => {
-      console.log(props.value)
-      inputValue.value = props.value
-      updateFields()
-    }
-  )
-
   return {
     $input,
-    inputValue,
     error,
     isFocused,
     onChange,
@@ -91,5 +85,6 @@ export const useInput = (props: IInput, emit: TInputEmits) => {
     onBlur,
     reset,
     validate,
+    updateFields,
   }
 }

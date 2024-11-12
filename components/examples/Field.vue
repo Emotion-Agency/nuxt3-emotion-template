@@ -12,8 +12,11 @@ const input = reactive({
   validators: [Validation.email('Please enter a valid email address')],
 })
 
+// const inputValue = ref('')
+
 const onInput = (data: iInputData) => {
-  input.value = data.value
+  // input.value = data.value
+  console.log(data)
 }
 </script>
 
@@ -24,7 +27,7 @@ const onInput = (data: iInputData) => {
       :id="input.id"
       :name="input.name"
       :type="input.type"
-      :value="input.value"
+      v-model="input.value"
       :placeholder="input.placeholder"
       :required="input.required"
       :validators="input.validators"

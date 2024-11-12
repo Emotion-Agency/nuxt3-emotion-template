@@ -8,7 +8,7 @@ const checked = ref(false)
     <HeadlessInputCheckbox
       id="checkbox"
       name="checkbox"
-      :checked="checked"
+      v-model="checked"
       :required="true"
     />
     <HeadlessInputValidationMessage v-if="field.error">

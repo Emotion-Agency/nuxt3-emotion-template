@@ -11,8 +11,13 @@ const props = defineProps<IProps>()
 
 const emit = defineEmits<TInputEmits>()
 
-const { $input, error, inputValue, isFocused, onBlur, onChange, onFocus } =
-  useInput(props, emit)
+const model = defineModel<string>()
+
+const { $input, error, isFocused, onBlur, onChange, onFocus } = useInput(
+  props,
+  emit,
+  model
+)
 </script>
 
 <template>
@@ -24,7 +29,7 @@ const { $input, error, inputValue, isFocused, onBlur, onChange, onFocus } =
     :required="required"
     :id="id"
     :name="name"
-    :value="inputValue"
+    v-model="model"
     :disabled="disabled"
     :placeholder="placeholder"
     :autofocus="autoFocus"

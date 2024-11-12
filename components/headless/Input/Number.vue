@@ -12,26 +12,31 @@ const props = defineProps<IProps>()
 
 const emit = defineEmits<TInputEmits>()
 
-const { $input, error, inputValue, isFocused, onBlur, onFocus, onChange } =
-  useInput(props, emit)
+const model = defineModel<string>()
+
+const { $input, error, isFocused, onBlur, onFocus, onChange } = useInput(
+  props,
+  emit,
+  model
+)
 
 const onNumberChange = () => {
-  const value = parseFloat(inputValue.value)
+  const value = parseFloat(model.value)
 
   if (isNaN(value)) {
-    inputValue.value = ''
+    model.value = ''
     onChange()
   }
 
   if (value < props.min) {
-    inputValue.value = props.min?.toString()
+    model.value = props.min?.toString()
     onChange()
 
     return
   }
 
   if (value > props.max) {
-    inputValue.value = props.max?.toString()
+    model.value = props.max?.toString()
     onChange()
 
     return
@@ -45,7 +50,7 @@ const onNumberChange = () => {
   <input
     ref="$input"
     type="number"
-    v-model="inputValue"
+    v-model="model"
     data-input
     :data-focused="isFocused"
     :required="required"

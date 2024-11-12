@@ -6,8 +6,13 @@ const props = defineProps<ICheckbox>()
 
 const emit = defineEmits<TCheckboxEmits>()
 
-const { $input, checked, error, onBlur, onChange, onFocus, isFocused } =
-  useCheckbox(props, emit)
+const model = defineModel<boolean>()
+
+const { $input, error, onBlur, onChange, onFocus, isFocused } = useCheckbox(
+  props,
+  emit,
+  model
+)
 </script>
 
 <template>
@@ -20,7 +25,7 @@ const { $input, checked, error, onBlur, onChange, onFocus, isFocused } =
     :required="required"
     :data-focused="isFocused"
     :value="name"
-    v-model="checked"
+    v-model="model"
     :disabled="disabled"
     :autofocus="autoFocus"
     :aria-invalid="error"

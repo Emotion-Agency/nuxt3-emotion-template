@@ -9,16 +9,13 @@ const props = withDefaults(defineProps<IInput>(), {
 
 const emit = defineEmits<TInputEmits>()
 
-const {
-  $input,
-  error,
-  inputValue,
-  isFocused,
-  onBlur,
-  onChange,
-  onFocus,
-  reset,
-} = useInput(props, emit)
+const model = defineModel<string>()
+
+const { $input, error, isFocused, onBlur, onChange, onFocus, reset } = useInput(
+  props,
+  emit,
+  model
+)
 
 defineExpose({
   reset,
@@ -29,7 +26,7 @@ defineExpose({
 <template>
   <input
     ref="$input"
-    v-model="inputValue"
+    v-model="model"
     data-input
     :data-focused="isFocused"
     :required="required"

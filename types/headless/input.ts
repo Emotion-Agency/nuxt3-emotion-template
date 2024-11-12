@@ -9,7 +9,6 @@ export interface IInput {
   id: string
   name?: string
   type?: string
-  value?: string
   disabled?: boolean
   placeholder?: string
   autoFocus?: boolean
@@ -29,9 +28,7 @@ export type TInputEmits = {
 }
 
 export interface ICheckbox
-  extends Omit<IInput, 'type' | 'placeholder' | 'validators'> {
-  checked?: boolean
-}
+  extends Omit<IInput, 'type' | 'placeholder' | 'validators'> {}
 
 export interface iCheckboxData {
   id: string
