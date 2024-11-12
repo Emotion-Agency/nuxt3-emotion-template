@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { iSelectData } from '~/types/headless/input'
+import type { IOption } from '~/types/headless/input'
 
-const selectedOption = ref<iSelectData>(null)
+const selectedOption = ref<IOption>(null)
 
 const options = [
   { value: 'apple', label: 'Apple' },
@@ -23,7 +23,6 @@ const validators = [
       v-model="selectedOption"
       :validators="validators"
       class="select"
-      :disabled="true"
     >
       <HeadlessInputSelectButton class="select__button">
         <span>

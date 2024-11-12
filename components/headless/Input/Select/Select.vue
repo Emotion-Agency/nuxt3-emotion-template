@@ -8,11 +8,12 @@ import type {
 } from '~/types/headless/input'
 
 const props = withDefaults(defineProps<ISelect>(), {
-  modelValue: null,
   as: 'div',
 })
 
 const emit = defineEmits<TSelectEmits>()
+
+const model = defineModel<IOption>()
 
 const inputCtx = useInputContext()
 
@@ -21,17 +22,18 @@ if (inputCtx) {
 }
 
 const isOpen = ref(false)
-const options = reactive([])
-const selectedOption = ref<IOption>(null)
+const options = reactive<ISelectOption[]>([])
+
 const error = ref<boolean | string>(false)
 
 const $selectContainer = ref(null)
 
 provide('registerOption', (option: ISelectOption) => {
+  // @ts-ignore
   options.push(option)
 })
 provide('selectOption', selectOption)
-provide('selectedOption', selectedOption)
+provide('selectedOption', model)
 provide('isOpen', isOpen)
 
 function toggleDropdown() {
@@ -41,7 +43,12 @@ function toggleDropdown() {
 
 const validate = () => {
   if (props.validators) {
-    const value = selectedOption.value.value
+    const value = model.value?.value
+
+    if (!value) {
+      return
+    }
+
     const falsyValidator = props.validators.find(validator => validator(value))
 
     if (falsyValidator) {
@@ -53,37 +60,78 @@ const validate = () => {
   }
 }
 
-watch(
-  () => props.modelValue,
-  item => {
-    const option = options.find(option => option.value === item?.value)
+function selectOption(option: IOption) {
+  model.value = option
 
-    if (option) {
-      selectedOption.value = option
-    } else {
-      selectedOption.value = null
+  nextTick(() => {
+    validate()
+
+    emit('change', {
+      value: option.value,
+      label: option.label,
+      id: props.id,
+      error: !!error.value,
+    })
+
+    if (inputCtx) {
+      inputCtx.value = {
+        ...inputCtx.value,
+        value: option,
+        error: error.value,
+      }
+    }
+  })
+}
+
+function handleOutsideClick(event: MouseEvent) {
+  if (!$selectContainer.value.contains(event.target)) {
+    isOpen.value = false
+  }
+}
+
+function handleKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') {
+    isOpen.value = false
+  }
+  if (event.key === 'ArrowDown') {
+    const currentIndex = options.findIndex(
+      option => option.value === model.value?.value
+    )
+    const nextIndex = currentIndex + 1
+    const nextOption = options[nextIndex]
+
+    if (nextOption) {
+      model.value = nextOption
+      nextOption.el.focus()
     }
   }
-)
 
-function selectOption(option: IOption) {
-  selectedOption.value = option
+  if (event.key === 'ArrowUp') {
+    const currentIndex = options.findIndex(
+      option => option.value === model.value?.value
+    )
+    const prevIndex = currentIndex - 1
+    const prevOption = options[prevIndex]
 
-  validate()
-
-  emit('update:modelValue', {
-    value: option.value,
-    label: option.label,
-    id: props.id,
-    error: !!error.value,
-  })
-
-  if (inputCtx) {
-    inputCtx.value = {
-      ...inputCtx.value,
-      value: option,
-      error: error.value,
+    if (prevOption) {
+      model.value = prevOption
+      prevOption.el.focus()
     }
+  }
+
+  if (event.key === 'Enter') {
+    event.preventDefault()
+    selectOption(model.value)
+    isOpen.value = !isOpen.value
+  }
+
+  if (event.key === 'Tab') {
+    isOpen.value = false
+  }
+
+  if (event.key === ' ') {
+    event.preventDefault()
+    isOpen.value = !isOpen.value
   }
 }
 
@@ -94,24 +142,20 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('click', handleOutsideClick)
 })
-
-function handleOutsideClick(event: MouseEvent) {
-  if (!$selectContainer.value.contains(event.target)) {
-    isOpen.value = false
-  }
-}
 </script>
 
 <template>
   <component
     :is="as"
     data-select
-    @click="toggleDropdown"
     tabindex="0"
     ref="$selectContainer"
     role="combobox"
     :aria-expanded="isOpen"
+    :aria-activedescendant="model?.value"
     :disabled="disabled"
+    @click="toggleDropdown"
+    @keydown="handleKeydown"
   >
     <slot />
   </component>

@@ -12,7 +12,7 @@ const isSelected = computed(() => selectedOption.value?.value === props.value)
 const optionRef = ref<HTMLElement>(null)
 
 onMounted(() => {
-  registerOption({ value: props.value, label: props.label, ref: optionRef })
+  registerOption({ value: props.value, label: props.label, el: optionRef })
 })
 
 function select() {
@@ -33,6 +33,7 @@ function setActive() {
     :aria-selected="isSelected"
     @mouseenter="setActive"
     ref="optionRef"
+    :value="props.value"
   >
     <slot :is-selected="isSelected"></slot>
   </button>

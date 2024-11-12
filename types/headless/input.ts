@@ -54,7 +54,6 @@ export interface ISelect {
   required?: boolean
   autoFocus?: boolean
   name?: string
-  modelValue?: iSelectData
   validators?: Array<(value: string) => boolean | string>
 }
 
@@ -64,10 +63,10 @@ export interface IOption {
 }
 
 export interface ISelectOption extends IOption {
-  ref: Ref<HTMLElement>
+  el: Ref<HTMLElement>
 }
 
 export type TSelectEmits = {
-  (event: 'update:modelValue', value: iSelectData | iSelectData[]): void
+  (event: 'change', value: iSelectData | iSelectData[]): void
   (event: 'error', error: string): void
 }
