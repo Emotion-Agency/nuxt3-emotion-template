@@ -9,7 +9,6 @@ const checked = ref(false)
       id="checkbox"
       name="checkbox"
       :checked="checked"
-      @change="console.log('checked:', $event)"
       :required="true"
     />
     <HeadlessInputValidationMessage v-if="field.error">

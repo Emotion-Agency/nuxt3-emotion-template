@@ -19,5 +19,6 @@
     <ExamplesTextarea :rows="10" />
     <ExamplesCheckbox />
     <ExamplesSelect />
+    <ExamplesDropdown />
   </main>
 </template>
