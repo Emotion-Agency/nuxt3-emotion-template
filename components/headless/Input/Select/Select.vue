@@ -32,7 +32,7 @@ provide('registerOption', (option: ISelectOption) => {
   options.push(option)
 })
 provide('selectOption', selectOption)
-provide('isOptionSelected', isOptionSelected)
+provide('selectedOption', selectedOption)
 provide('isOpen', isOpen)
 
 function toggleDropdown() {
@@ -72,10 +72,6 @@ function selectOption(option: IOption) {
       error: error.value,
     }
   }
-}
-
-function isOptionSelected(option: IOption) {
-  return selectedOption.value && selectedOption.value.value === option.value
 }
 
 onMounted(() => {

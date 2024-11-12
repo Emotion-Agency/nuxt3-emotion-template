@@ -9,14 +9,6 @@ const options = [
   { value: 'cherry', label: 'Cherry' },
 ]
 
-const searchText = ref('')
-
-const filteredOptions = computed(() =>
-  options.filter(option =>
-    option.label.toLowerCase().includes(searchText.value.toLowerCase())
-  )
-)
-
 const validators = [
   (value: string) =>
     !value.includes('a') && 'Value must include the letter "a"',
@@ -32,12 +24,7 @@ const validators = [
       :validators="validators"
       class="select"
     >
-      <HeadlessInputSelectButton
-        class="select__button"
-        :with-search="true"
-        :placeholder="selectedOption?.label || searchText || 'Select an option'"
-        v-model="searchText"
-      >
+      <HeadlessInputSelectButton class="select__button">
         <span>
           {{ selectedOption ? selectedOption.label : 'Select an option' }}
         </span>
@@ -51,12 +38,11 @@ const validators = [
       </HeadlessInputSelectButton>
       <HeadlessInputSelectOptions class="select__options">
         <HeadlessInputSelectOption
-          v-for="option in filteredOptions"
+          v-for="option in options"
           :key="option.value"
           :label="option.label"
           :value="option.value"
           class="select__option"
-          :class="{ selected: selectedOption?.value === option.value }"
         >
           {{ option.label }}
         </HeadlessInputSelectOption>
@@ -137,7 +123,7 @@ const validators = [
       background-color: #f5f5f5;
     }
 
-    &.selected {
+    &[data-selected='true'] {
       background-color: #e3f2fd;
       color: #1976d2;
       font-weight: 500;

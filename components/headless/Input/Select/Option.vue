@@ -4,15 +4,15 @@ import type { IOption } from '~/types/headless/input'
 const props = defineProps<IOption>()
 
 const selectOption = inject('selectOption') as any
+const selectedOption = inject('selectedOption') as Ref<IOption>
 const registerOption = inject('registerOption') as any
-const isOptionSelected = inject('isOptionSelected') as any
 
-const isSelected = ref(false)
+const isSelected = computed(() => selectedOption.value?.value === props.value)
+
 const optionRef = ref<HTMLElement>(null)
 
 onMounted(() => {
   registerOption({ value: props.value, label: props.label, ref: optionRef })
-  isSelected.value = isOptionSelected({ value: props.value })
 })
 
 function select() {
@@ -28,7 +28,7 @@ function setActive() {
   <div
     :class="['option', { selected: isSelected }]"
     data-option
-    data-selected="false"
+    :data-selected="isSelected"
     @click="select"
     role="option"
     :aria-selected="isSelected"
