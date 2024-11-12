@@ -17,25 +17,25 @@ const emit = defineEmits(['close'])
 
 const isActualOpen = ref(props.isOpen)
 
-const dialogId = `dialog-${keysGenerator(8)}`
+const dialogId = `dialog-${useId()}`
 const $el = ref<HTMLElement | null>(null)
 
 const $window = ref<HTMLElement | null>(null)
 const trap = ref<FocusTrap | null>(null)
 const $modalFocusGuard = ref<HTMLElement | null>(null)
 
-onMounted(() => {
-  $window.value = $el.value?.querySelector(
-    '[data-dialog-window]'
-  ) as HTMLElement
-
-  if (!$window.value) {
+const registerWindow = ($el: Ref<HTMLElement>) => {
+  if (!$el.value) {
     throw new Error('Dialog window not found')
   }
+  $window.value = $el.value
+}
 
-  $window.value.setAttribute('id', dialogId)
+provide('registerWindow', registerWindow)
+provide('dialogId', dialogId)
 
-  trap.value = createFocusTrap($el.value)
+onMounted(() => {
+  trap.value = createFocusTrap($el.value as HTMLElement)
 })
 
 watch(
@@ -81,6 +81,7 @@ watch(
       ref="$el"
       role="dialog"
       :aria-modal="true"
+      :aria-labelledby="dialogId"
       @keydown.esc="emit('close')"
       v-bind="$attrs"
     >
