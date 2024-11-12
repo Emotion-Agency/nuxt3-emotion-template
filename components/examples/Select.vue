@@ -3,19 +3,11 @@ import type { iSelectData } from '~/types/headless/input'
 
 const selectedOption = ref<iSelectData>(null)
 
-const searchInput = ref<string>('')
-
 const options = [
   { value: 'apple', label: 'Apple' },
   { value: 'banana', label: 'Banana' },
   { value: 'cherry', label: 'Cherry' },
 ]
-
-const filteredOptions = computed(() =>
-  options.filter(option =>
-    option.label.toLowerCase().includes(searchInput.value.toLowerCase())
-  )
-)
 
 const validators = [
   (value: string) =>
@@ -31,6 +23,7 @@ const validators = [
       v-model="selectedOption"
       :validators="validators"
       class="select"
+      :disabled="true"
     >
       <HeadlessInputSelectButton class="select__button">
         <span>
@@ -46,7 +39,7 @@ const validators = [
       </HeadlessInputSelectButton>
       <HeadlessInputSelectOptions class="select__options">
         <HeadlessInputSelectOption
-          v-for="option in filteredOptions"
+          v-for="option in options"
           :key="option.value"
           :label="option.label"
           :value="option.value"
@@ -124,6 +117,9 @@ const validators = [
     padding: 8px 12px;
     font-size: 1rem;
     color: #333;
+    display: block;
+    width: 100%;
+    background-color: transparent;
     cursor: pointer;
     transition: background-color 0.2s;
 

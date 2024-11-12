@@ -25,8 +25,7 @@ function setActive() {
 </script>
 
 <template>
-  <div
-    :class="['option', { selected: isSelected }]"
+  <button
     data-option
     :data-selected="isSelected"
     @click="select"
@@ -36,5 +35,5 @@ function setActive() {
     ref="optionRef"
   >
     <slot :is-selected="isSelected"></slot>
-  </div>
+  </button>
 </template>

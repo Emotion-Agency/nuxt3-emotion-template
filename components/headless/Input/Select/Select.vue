@@ -8,7 +8,6 @@ import type {
 } from '~/types/headless/input'
 
 const props = withDefaults(defineProps<ISelect>(), {
-  placeholder: 'Select an option',
   modelValue: null,
   as: 'div',
 })
@@ -36,6 +35,7 @@ provide('selectedOption', selectedOption)
 provide('isOpen', isOpen)
 
 function toggleDropdown() {
+  if (props.disabled) return
   isOpen.value = !isOpen.value
 }
 
@@ -111,6 +111,7 @@ function handleOutsideClick(event: MouseEvent) {
     ref="$selectContainer"
     role="combobox"
     :aria-expanded="isOpen"
+    :disabled="disabled"
   >
     <slot />
   </component>
