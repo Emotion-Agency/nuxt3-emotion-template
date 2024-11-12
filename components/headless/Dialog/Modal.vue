@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { createFocusTrap, type FocusTrap } from 'focus-trap'
 import { keysGenerator } from '@emotionagency/utils'
 
 interface IProps {
@@ -18,9 +19,10 @@ const isActualOpen = ref(props.isOpen)
 
 const dialogId = `dialog-${keysGenerator(8)}`
 const $el = ref<HTMLElement | null>(null)
-const $focusGuard = ref<HTMLElement | null>(null)
 
 const $window = ref<HTMLElement | null>(null)
+const trap = ref<FocusTrap | null>(null)
+const $modalFocusGuard = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   $window.value = $el.value?.querySelector(
@@ -32,9 +34,9 @@ onMounted(() => {
   }
 
   $window.value.setAttribute('id', dialogId)
-})
 
-let activeElement: HTMLElement | null = null
+  trap.value = createFocusTrap($el.value)
+})
 
 watch(
   () => props.isOpen,
@@ -44,14 +46,11 @@ watch(
     }
 
     if (value) {
-      activeElement = document?.activeElement as HTMLElement
       setTimeout(() => {
-        $focusGuard.value?.focus()
-      }, 300)
+        trap.value?.activate()
+      }, 0)
     } else {
-      setTimeout(() => {
-        activeElement?.focus()
-      }, 300)
+      trap.value?.deactivate()
     }
   }
 )
@@ -96,6 +95,7 @@ watch(
           opacity: 0;
         "
       ></button>
+
       <slot />
     </div>
   </Transition>
