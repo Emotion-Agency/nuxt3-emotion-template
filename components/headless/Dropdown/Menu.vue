@@ -3,6 +3,7 @@ const isOpen = ref(false)
 const activeIndex = ref(-1)
 const menuItems = ref<HTMLElement[]>([])
 const $menuRef = ref<HTMLElement | null>(null)
+const $triggerRef = ref<HTMLElement | null>(null)
 
 function toggleDropdown() {
   isOpen.value = !isOpen.value
@@ -29,12 +30,19 @@ function handleKeydown(event: KeyboardEvent) {
   }
 }
 
+const registerTrigger = (trigger: HTMLElement) => {
+  $triggerRef.value = trigger
+}
+
 provide('isOpen', isOpen)
 provide('toggleDropdown', toggleDropdown)
 provide('closeDropdown', closeDropdown)
 provide('registerItem', (item: HTMLElement) => {
   menuItems.value.push(item)
 })
+
+provide('triggerEl', $triggerRef)
+provide('registerTrigger', registerTrigger)
 
 const handleOutsideClick = (event: MouseEvent) => {
   if (!isOpen.value) return
@@ -55,13 +63,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="dropdown-menu" ref="$menuRef" @keydown="handleKeydown">
+  <div data-dropdown-menu ref="$menuRef" @keydown="handleKeydown">
     <slot />
   </div>
 </template>
 
 <style scoped>
-.dropdown-menu {
+[data-dropdown-menu] {
   display: inline-block;
   position: relative;
 }

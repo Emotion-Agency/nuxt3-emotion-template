@@ -20,7 +20,6 @@ onMounted(() => {
 
 <template>
   <div
-    class="dropdown-item"
     role="menuitem"
     tabindex="0"
     @click="handleClick"
@@ -31,15 +30,3 @@ onMounted(() => {
     <slot />
   </div>
 </template>
-
-<style scoped>
-.dropdown-item {
-  padding: 8px 16px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-  background-color: #f0f0f0;
-}
-</style>
