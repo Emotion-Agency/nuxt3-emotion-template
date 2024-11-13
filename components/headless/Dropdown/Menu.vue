@@ -2,6 +2,7 @@
 const isOpen = ref(false)
 const activeIndex = ref(-1)
 const menuItems = ref<HTMLElement[]>([])
+const $menuRef = ref<HTMLElement | null>(null)
 
 function toggleDropdown() {
   isOpen.value = !isOpen.value
@@ -34,10 +35,27 @@ provide('closeDropdown', closeDropdown)
 provide('registerItem', (item: HTMLElement) => {
   menuItems.value.push(item)
 })
+
+const handleOutsideClick = (event: MouseEvent) => {
+  if (!isOpen.value) return
+
+  const menu = $menuRef.value as HTMLElement
+  if (!menu.contains(event.target as Node)) {
+    closeDropdown()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('click', handleOutsideClick)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('click', handleOutsideClick)
+})
 </script>
 
 <template>
-  <div class="dropdown-menu" ref="menuRef" @keydown="handleKeydown">
+  <div class="dropdown-menu" ref="$menuRef" @keydown="handleKeydown">
     <slot />
   </div>
 </template>
