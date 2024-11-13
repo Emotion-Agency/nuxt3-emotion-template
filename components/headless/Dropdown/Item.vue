@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
+  <li
     role="menuitem"
     tabindex="0"
     @click="handleClick"
@@ -28,5 +28,5 @@ onMounted(() => {
     @focus="setActive"
   >
     <slot />
-  </div>
+  </li>
 </template>

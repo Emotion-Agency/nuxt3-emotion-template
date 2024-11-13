@@ -69,7 +69,7 @@ watch(
 </script>
 
 <template>
-  <div ref="$el" v-show="isOpen" role="menu">
+  <ul ref="$el" v-show="isOpen" role="menu">
     <slot />
-  </div>
+  </ul>
 </template>
