@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main style="max-width: 500px">
     <h1 class="22">Hello from Emotion!</h1>
 
     <HeadlessLoader />
