@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, Teleport } from 'vue'
 
 const tooltipTrigger = ref<HTMLElement | null>(null)
 const tooltipContent = ref<HTMLElement | null>(null)
@@ -90,15 +90,17 @@ onUnmounted(() => {
       <slot name="trigger" />
     </div>
     <transition :name="transition">
-      <div
-        v-if="isVisible"
-        ref="tooltipContent"
-        data-tooltip-content
-        role="tooltip"
-        :style="computedPosition"
-      >
-        <slot />
-      </div>
+      <Teleport to="#teleports">
+        <div
+          v-if="isVisible"
+          ref="tooltipContent"
+          data-tooltip-content
+          role="tooltip"
+          :style="computedPosition"
+        >
+          <slot />
+        </div>
+      </Teleport>
     </transition>
   </component>
 </template>

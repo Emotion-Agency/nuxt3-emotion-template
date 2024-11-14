@@ -23,7 +23,7 @@ import Tooltip from '~/components/headless/Tooltip.vue'
     <ExamplesSelect />
     <ExamplesDropdown />
 
-    <Tooltip position="left">
+    <Tooltip position="right">
       <template #trigger>
         <button>Hover or focus m</button>
       </template>
