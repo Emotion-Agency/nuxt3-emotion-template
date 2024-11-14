@@ -33,7 +33,8 @@ const isPasswordVisible = ref(false)
         @input="onInput"
       />
       <button @click="isPasswordVisible = !isPasswordVisible">
-        {{ isPasswordVisible ? 'Hide' : 'Show' }}
+        <LucideEyeOff v-if="isPasswordVisible" :size="16" />
+        <LucideEye v-else :size="16" />
       </button>
     </div>
     <HeadlessInputValidationMessage v-if="field.error">

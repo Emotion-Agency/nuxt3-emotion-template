@@ -14,11 +14,12 @@ const addOpenedItem = inject('addOpenedItem') as (index: number) => void
 const registerItem = inject('registerItem') as (item: HTMLElement) => number
 
 const $el = ref<HTMLElement | null>(null)
+const idx = ref<number | null>(null)
 
 onMounted(() => {
-  const idx = registerItem($el.value as HTMLElement)
+  idx.value = registerItem($el.value as HTMLElement)
 
-  props.open && addOpenedItem(idx)
+  props.open && addOpenedItem(idx.value)
 })
 
 const isOpened = inject('isOpened') as (index: number) => boolean
@@ -26,6 +27,6 @@ const isOpened = inject('isOpened') as (index: number) => boolean
 
 <template>
   <component ref="$el" :is="as" role="region" :disabled="disabled">
-    <slot :is-opened="isOpened" />
+    <slot :is-opened="isOpened(idx)" />
   </component>
 </template>

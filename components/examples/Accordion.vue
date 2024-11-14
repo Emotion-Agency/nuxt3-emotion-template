@@ -25,9 +25,12 @@ const items = [
       :open="false"
       class="accordion-item"
       v-for="item in items"
+      v-slot="{ isOpened }"
     >
       <HeadlessAccordionButton class="accordion-button">
         {{ item.title }}
+        <LucideChevronDown v-if="!isOpened" />
+        <LucideChevronUp v-else />
       </HeadlessAccordionButton>
       <HeadlessAccordionPanel class="accordion-panel">
         <div class="accordion-content">
@@ -80,17 +83,6 @@ const items = [
   &:focus {
     background-color: #e3f2fd;
     color: #1976d2;
-  }
-
-  &::after {
-    content: '\25BC';
-    font-size: 1rem;
-    transform: rotate(0deg);
-    transition: transform 0.3s;
-  }
-
-  &[aria-expanded='true']::after {
-    transform: rotate(180deg);
   }
 }
 

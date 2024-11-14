@@ -29,11 +29,13 @@ const validators = [
           {{ selectedOption ? selectedOption.label : 'Select an option' }}
         </span>
 
-        <span>
+        <span style="display: flex">
           <button class="select__close" @click.stop="selectedOption = null">
-            X
+            <LucideX :size="16" />
           </button>
-          <span>▼</span>
+          <span>
+            <LucideChevronsUpDown :size="16" />
+          </span>
         </span>
       </HeadlessInputSelectButton>
       <HeadlessInputSelectOptions class="select__options">
