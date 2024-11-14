@@ -29,5 +29,7 @@ import Tooltip from '~/components/headless/Tooltip.vue'
       </template>
       Tooltip content
     </Tooltip>
+
+    <ExamplesAccordion />
   </main>
 </template>

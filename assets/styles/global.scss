@@ -14,7 +14,8 @@ html {
 body {
   color: var(--black);
   font-size: 1rem;
-  min-height: 200vh;
+  padding-bottom: 200px;
+  overflow: hidden;
   position: relative;
   font-family: sans-serif;
   overscroll-behavior-y: none;

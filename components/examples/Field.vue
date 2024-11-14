@@ -42,8 +42,8 @@ const onInput = (data: iInputData) => {
   </HeadlessInputField>
 </template>
 
-<style lang="scss" scoped>
-input[type='text'] {
+<style lang="scss">
+input {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
