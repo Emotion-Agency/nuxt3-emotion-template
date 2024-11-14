@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import Tooltip from '~/components/headless/Tooltip.vue'
+</script>
+
 <template>
   <main style="max-width: 500px">
     <h1 class="22">Hello from Emotion!</h1>
@@ -18,5 +22,12 @@
     <ExamplesCheckbox />
     <ExamplesSelect />
     <ExamplesDropdown />
+
+    <Tooltip position="left">
+      <template #trigger>
+        <button>Hover or focus m</button>
+      </template>
+      Tooltip content
+    </Tooltip>
   </main>
 </template>
