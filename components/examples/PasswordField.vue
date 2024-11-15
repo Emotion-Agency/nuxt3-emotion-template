@@ -21,7 +21,7 @@ const isPasswordVisible = ref(false)
 <template>
   <HeadlessInputField v-slot="field">
     <HeadlessInputLabel>{{ input.name }}</HeadlessInputLabel>
-    <div>
+    <div class="input-wrapper">
       <HeadlessInputPassword
         :is-password-visible="isPasswordVisible"
         :id="input.id"
@@ -42,3 +42,18 @@ const isPasswordVisible = ref(false)
     </HeadlessInputValidationMessage>
   </HeadlessInputField>
 </template>
+
+<style scoped>
+.input-wrapper {
+  position: relative;
+}
+button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+</style>

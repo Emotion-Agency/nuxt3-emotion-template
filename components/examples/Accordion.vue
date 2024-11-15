@@ -29,8 +29,10 @@ const items = [
     >
       <HeadlessAccordionButton class="accordion-button">
         {{ item.title }}
-        <LucideChevronDown v-if="!isOpened" />
-        <LucideChevronUp v-else />
+        <LucideChevronDown
+          class="accordion-chevron"
+          :class="{ 'accordion-chevron--opened': isOpened }"
+        />
       </HeadlessAccordionButton>
       <HeadlessAccordionPanel class="accordion-panel">
         <div class="accordion-content">
@@ -94,5 +96,12 @@ const items = [
 
 .accordion-content {
   padding: 16px 20px;
+}
+
+.accordion-chevron {
+  transition: transform 0.2s ease;
+  &--opened {
+    transform: rotate(-180deg);
+  }
 }
 </style>

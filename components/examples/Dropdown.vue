@@ -6,11 +6,7 @@
 
     <Teleport to="#teleports">
       <Transition name="fade">
-        <HeadlessDropdownItems
-          position-x="right"
-          position-y="bottom"
-          class="dropdown-items"
-        >
+        <HeadlessDropdownItems position-x="right" class="dropdown-items">
           <HeadlessDropdownItem class="dropdown-item"
             >Option 1</HeadlessDropdownItem
           >
@@ -29,9 +25,8 @@
 <style scoped lang="scss">
 .dropdown-menu {
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  right: 20px;
+  top: 20px;
   display: inline-block;
 }
 

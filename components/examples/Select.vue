@@ -38,17 +38,19 @@ const validators = [
           </span>
         </span>
       </HeadlessInputSelectButton>
-      <HeadlessInputSelectOptions class="select__options">
-        <HeadlessInputSelectOption
-          v-for="option in options"
-          :key="option.value"
-          :label="option.label"
-          :value="option.value"
-          class="select__option"
-        >
-          {{ option.label }}
-        </HeadlessInputSelectOption>
-      </HeadlessInputSelectOptions>
+      <Transition name="fade">
+        <HeadlessInputSelectOptions class="select__options">
+          <HeadlessInputSelectOption
+            v-for="option in options"
+            :key="option.value"
+            :label="option.label"
+            :value="option.value"
+            class="select__option"
+          >
+            {{ option.label }}
+          </HeadlessInputSelectOption>
+        </HeadlessInputSelectOptions>
+      </Transition>
     </HeadlessInputSelect>
     <HeadlessInputValidationMessage v-if="field.error">{{
       field.error

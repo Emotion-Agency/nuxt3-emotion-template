@@ -43,7 +43,11 @@ const onInput = (data: iInputData) => {
 </template>
 
 <style lang="scss">
-input {
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;

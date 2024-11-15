@@ -30,6 +30,14 @@ export const useCheckbox = (
       checked: model.value,
       error: error.value,
     })
+
+    if (inputCtx) {
+      inputCtx.value = {
+        ...inputCtx.value,
+        value: model.value,
+        error: error.value,
+      }
+    }
   }
 
   const error = computed(() => {
