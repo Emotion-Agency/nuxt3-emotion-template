@@ -22,5 +22,6 @@ const input = reactive({
     :disable-resize="true"
     v-model="input.value"
     type="textarea"
+    class="input"
   />
 </template>

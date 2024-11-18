@@ -98,7 +98,7 @@ function handleKeydown(event: KeyboardEvent) {
 
     if (nextOption) {
       model.value = nextOption
-      nextOption.el.focus()
+      nextOption.el?.focus()
     }
   }
 
@@ -111,7 +111,7 @@ function handleKeydown(event: KeyboardEvent) {
 
     if (prevOption) {
       model.value = prevOption
-      prevOption.el.focus()
+      prevOption.el?.focus()
     }
   }
 

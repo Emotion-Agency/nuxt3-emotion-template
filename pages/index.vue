@@ -3,7 +3,15 @@ import Tooltip from '~/components/headless/Tooltip.vue'
 </script>
 
 <template>
-  <main style="max-width: 500px">
+  <main
+    style="
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin: 0 auto;
+    "
+  >
     <h1 class="22">Hello from Emotion!</h1>
 
     <HeadlessLoader />
@@ -17,6 +25,7 @@ import Tooltip from '~/components/headless/Tooltip.vue'
       :max="10"
       id="number"
       placeholder="Number"
+      class="input"
     />
     <ExamplesTextarea :rows="10" />
     <ExamplesCheckbox />

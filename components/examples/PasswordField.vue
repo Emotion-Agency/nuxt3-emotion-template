@@ -31,6 +31,7 @@ const isPasswordVisible = ref(false)
         :required="input.required"
         :validators="input.validators"
         @input="onInput"
+        class="input"
       />
       <button @click="isPasswordVisible = !isPasswordVisible">
         <LucideEyeOff v-if="isPasswordVisible" :size="16" />

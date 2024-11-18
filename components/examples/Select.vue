@@ -13,6 +13,22 @@ const validators = [
   (value: string) =>
     !value.includes('a') && 'Value must include the letter "a"',
 ]
+
+const search = ref('')
+
+const filteredOptions = computed(() =>
+  options.filter(option =>
+    option.label.toLowerCase().includes(search.value.toLowerCase())
+  )
+)
+
+watch(selectedOption, () => {
+  if (selectedOption.value) {
+    search.value = selectedOption.value.label
+    return
+  }
+  search.value = ''
+})
 </script>
 
 <template>
@@ -25,11 +41,19 @@ const validators = [
       class="select"
     >
       <HeadlessInputSelectButton class="select__button">
-        <span>
+        <HeadlessInput
+          id="select search"
+          v-model="search"
+          class="select__input"
+          type="text"
+          placeholder="Select an option"
+          autocomplete="off"
+        />
+        <!-- <span>
           {{ selectedOption ? selectedOption.label : 'Select an option' }}
-        </span>
+        </span> -->
 
-        <span style="display: flex">
+        <span class="select__actions">
           <button class="select__close" @click.stop="selectedOption = null">
             <LucideX :size="16" />
           </button>
@@ -41,7 +65,7 @@ const validators = [
       <Transition name="fade">
         <HeadlessInputSelectOptions class="select__options">
           <HeadlessInputSelectOption
-            v-for="option in options"
+            v-for="option in filteredOptions"
             :key="option.value"
             :label="option.label"
             :value="option.value"
@@ -78,7 +102,7 @@ const validators = [
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
+    padding: 12px;
     width: 100%;
     font-size: 1rem;
     color: #333;
@@ -141,5 +165,15 @@ const validators = [
 .select__input {
   width: 100%;
   height: 100%;
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+}
+
+.select__actions {
+  display: flex;
+  margin-left: auto;
+  position: relative;
+  z-index: 2;
 }
 </style>
