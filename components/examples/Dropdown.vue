@@ -1,5 +1,26 @@
 <template>
-  <HeadlessDropdownMenu class="dropdown-menu">
+  <HeadlessDropdownMenu class="dropdown-menu" trigger="hover">
+    <HeadlessDropdownTrigger class="dropdown-btn"
+      >Open Menu</HeadlessDropdownTrigger
+    >
+
+    <Teleport to="#teleports">
+      <Transition name="fade">
+        <HeadlessDropdownItems position-x="right" class="dropdown-items">
+          <HeadlessDropdownItem class="dropdown-item"
+            >Option 1</HeadlessDropdownItem
+          >
+          <HeadlessDropdownItem class="dropdown-item"
+            >Option 2</HeadlessDropdownItem
+          >
+          <HeadlessDropdownItem class="dropdown-item"
+            >Option 3</HeadlessDropdownItem
+          >
+        </HeadlessDropdownItems>
+      </Transition>
+    </Teleport>
+  </HeadlessDropdownMenu>
+  <HeadlessDropdownMenu class="dropdown-menu dropdown-menu-2">
     <HeadlessDropdownTrigger class="dropdown-btn"
       >Open Menu</HeadlessDropdownTrigger
     >
@@ -28,6 +49,10 @@
   right: 20px;
   top: 20px;
   display: inline-block;
+}
+
+.dropdown-menu-2 {
+  right: 200px;
 }
 
 .dropdown-items {
