@@ -4,10 +4,16 @@ import type { IOption } from '~/types/headless/input'
 const props = defineProps<IOption>()
 
 const selectOption = inject('selectOption') as any
-const selectedOption = inject('selectedOption') as Ref<IOption>
+const selectedOption = inject('selectedOption') as Ref<IOption | IOption[]>
 const registerOption = inject('registerOption') as any
 
-const isSelected = computed(() => selectedOption.value?.value === props.value)
+const isSelected = computed(() => {
+  if (Array.isArray(selectedOption.value)) {
+    return !!selectedOption.value?.find(opt => opt.value === props.value)
+  }
+
+  return selectedOption.value?.value === props.value
+})
 
 const optionRef = ref<HTMLElement>(null)
 

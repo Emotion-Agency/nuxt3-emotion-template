@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { IOption } from '~/types/headless/input'
 
-const selectedOption = ref<IOption>(null)
+const selectedOption = ref<IOption[]>([])
 
 const options = [
   { value: 'apple', label: 'Apple' },
@@ -9,54 +9,72 @@ const options = [
   { value: 'cherry', label: 'Cherry' },
 ]
 
-const validators = [
-  (value: string) =>
-    !value.includes('a') && 'Value must include the letter "a"',
-]
-
 const search = ref('')
 
 const filteredOptions = computed(() =>
-  options.filter(option =>
-    option.label.toLowerCase().includes(search.value.toLowerCase())
-  )
+  options
+    .filter(option =>
+      selectedOption.value.every(opt => opt.value !== option.value)
+    )
+    .filter(option =>
+      option.label.toLowerCase().includes(search.value.toLowerCase())
+    )
 )
 
 watch(selectedOption, () => {
-  if (selectedOption.value) {
-    search.value = selectedOption.value.label
-    return
-  }
   search.value = ''
 })
+
+const inputWidth = computed(() => {
+  return search.value?.length
+})
+
+const removeSelectedOption = (option: IOption) => {
+  selectedOption.value = selectedOption.value.filter(
+    opt => opt.value !== option.value
+  )
+}
+
+const onBackSpace = () => {
+  if (search.value.length || !filteredOptions.value?.length) return
+
+  const lastOption = selectedOption.value[selectedOption.value?.length - 1]
+
+  console.log(search.value.length)
+
+  if (lastOption) {
+    removeSelectedOption(lastOption)
+  }
+}
 </script>
 
 <template>
   <HeadlessInputField v-slot="field">
     <HeadlessInputLabel for="select">Label</HeadlessInputLabel>
-    <HeadlessInputSelect
+    <HeadlessInputMultiselect
       id="select"
       v-model="selectedOption"
-      :validators="validators"
       class="select"
     >
       <HeadlessInputSelectButton class="select__button">
+        <button
+          v-for="(opt, idx) in selectedOption"
+          :key="idx"
+          @click="removeSelectedOption(opt)"
+        >
+          {{ opt.label }}
+        </button>
         <HeadlessInput
-          id="select-search"
+          id="select-search-2"
           v-model="search"
           class="select__input"
           type="text"
-          placeholder="Select an option"
           autocomplete="off"
+          :style="{ '--width': `${inputWidth}ch` }"
+          @keydown.delete="onBackSpace"
         />
-        <!-- <span>
-          {{ selectedOption ? selectedOption.label : 'Select an option' }}
-        </span> -->
 
         <span class="select__actions">
-          <button class="select__close" @click.stop="selectedOption = null">
-            <LucideX :size="16" />
-          </button>
           <span>
             <LucideChevronsUpDown :size="16" />
           </span>
@@ -75,7 +93,7 @@ watch(selectedOption, () => {
           </HeadlessInputSelectOption>
         </HeadlessInputSelectOptions>
       </Transition>
-    </HeadlessInputSelect>
+    </HeadlessInputMultiselect>
     <HeadlessInputValidationMessage v-if="field.error">{{
       field.error
     }}</HeadlessInputValidationMessage>
@@ -100,9 +118,8 @@ watch(selectedOption, () => {
 
   &__button {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 12px;
     width: 100%;
     font-size: 1rem;
     color: #333;
@@ -163,10 +180,11 @@ watch(selectedOption, () => {
 }
 
 .select__input {
-  width: 100%;
+  --width: 46px;
   height: 100%;
-  position: absolute;
-  inset: 0;
+  flex: 1 1 auto;
+  padding: 12px;
+  width: var(--width);
   background-color: transparent;
 }
 

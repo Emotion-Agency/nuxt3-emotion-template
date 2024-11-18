@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useInputContext } from '~/composables/headless/inputContext'
+import { useSelect } from '~/composables/headless/select'
 import type {
   IOption,
   ISelect,
@@ -15,18 +15,8 @@ const emit = defineEmits<TSelectEmits>()
 
 const model = defineModel<IOption>()
 
-const inputCtx = useInputContext()
-
-if (inputCtx) {
-  inputCtx.value = { ...inputCtx.value, ...props }
-}
-
-const isOpen = ref(false)
-const options = reactive<ISelectOption[]>([])
-
-const error = ref<boolean | string>(false)
-
-const $selectContainer = ref(null)
+const { $selectContainer, isOpen, options, selectOption, toggleDropdown } =
+  useSelect(props, emit, model)
 
 provide('registerOption', (option: ISelectOption) => {
   // @ts-ignore
@@ -35,55 +25,6 @@ provide('registerOption', (option: ISelectOption) => {
 provide('selectOption', selectOption)
 provide('selectedOption', model)
 provide('isOpen', isOpen)
-
-function toggleDropdown() {
-  if (props.disabled) return
-  isOpen.value = !isOpen.value
-}
-
-const validate = () => {
-  if (props.validators) {
-    const value = model.value?.value
-
-    if (!value) {
-      return
-    }
-
-    const falsyValidator = props.validators.find(validator => validator(value))
-
-    if (falsyValidator) {
-      error.value = falsyValidator(value)
-      emit('error', error.value as string)
-    } else {
-      error.value = false
-    }
-  }
-}
-
-function selectOption(option: IOption) {
-  model.value = option
-
-  nextTick(() => {
-    validate()
-
-    emit('change', {
-      value: option.value,
-      label: option.label,
-      id: props.id,
-      error: !!error.value,
-    })
-
-    if (inputCtx) {
-      inputCtx.value = {
-        ...inputCtx.value,
-        value: option,
-        error: error.value,
-      }
-    }
-  })
-}
-
-onClickOutside($selectContainer, () => (isOpen.value = false))
 
 function handleKeydown(event: KeyboardEvent) {
   if (event.key === 'Escape') {
