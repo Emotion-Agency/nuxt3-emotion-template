@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { createFocusTrap, type FocusTrap } from 'focus-trap'
-import { keysGenerator } from '@emotionagency/utils'
 
 interface IProps {
   isOpen: boolean
@@ -77,13 +76,13 @@ watch(
   <Transition :name="transitionName">
     <div
       v-show="isActualOpen"
-      :data-open="isOpen"
       ref="$el"
+      :data-open="isOpen"
       role="dialog"
       :aria-modal="true"
       :aria-labelledby="dialogId"
-      @keydown.esc="emit('close')"
       v-bind="$attrs"
+      @keydown.esc="emit('close')"
     >
       <button
         ref="$modalFocusGuard"

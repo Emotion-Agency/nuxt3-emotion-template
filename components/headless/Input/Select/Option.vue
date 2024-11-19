@@ -32,14 +32,14 @@ function setActive() {
 
 <template>
   <button
+    ref="optionRef"
     data-option
     :data-selected="isSelected"
-    @click="select"
     role="option"
     :aria-selected="isSelected"
-    @mouseenter="setActive"
-    ref="optionRef"
     :value="props.value"
+    @click="select"
+    @mouseenter="setActive"
   >
     <slot :is-selected="isSelected"></slot>
   </button>

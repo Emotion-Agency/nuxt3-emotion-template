@@ -23,15 +23,15 @@ const isPasswordVisible = ref(false)
     <HeadlessInputLabel>{{ input.name }}</HeadlessInputLabel>
     <div class="input-wrapper">
       <HeadlessInputPassword
-        :is-password-visible="isPasswordVisible"
         :id="input.id"
+        :is-password-visible="isPasswordVisible"
         :name="input.name"
         :value="input.value"
         :placeholder="input.placeholder"
         :required="input.required"
         :validators="input.validators"
-        @input="onInput"
         class="input"
+        @input="onInput"
       />
       <button @click="isPasswordVisible = !isPasswordVisible">
         <LucideEyeOff v-if="isPasswordVisible" :size="16" />

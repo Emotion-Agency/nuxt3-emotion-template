@@ -47,10 +47,10 @@ onBeforeUnmount(() => {
 <template>
   <transition name="panel">
     <component
-      data-panel
+      :is="as"
       v-show="isOpened(idx)"
       ref="$el"
-      :is="as"
+      data-panel
       role="region"
       :style="`--max-height: ${isOpened(idx) ? calcHeight() + 'px' : 0}; transition-duration: ${transitionDuration}ms`"
       @click="togglePanel(idx)"

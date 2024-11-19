@@ -11,10 +11,10 @@ const $el = ref<HTMLElement | null>(null)
 
 const dialogId = inject('dialogId') as string
 
-const registerWindow = inject('registerWindow') as (el: HTMLElement) => void
+const registerWindow = inject('registerWindow') as (_el: HTMLElement) => void
 
 onMounted(() => {
-  // @ts-ignore
+  // @ts-expect-error
   registerWindow($el)
 })
 </script>
@@ -22,8 +22,8 @@ onMounted(() => {
 <template>
   <Transition :name="transitionName">
     <div
-      ref="$el"
       :id="dialogId"
+      ref="$el"
       tabindex="-1"
       role="document"
       data-dialog-window

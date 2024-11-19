@@ -25,12 +25,12 @@ defineExpose({
 
 <template>
   <input
+    :id="id"
     ref="$input"
     v-model="model"
     data-input
     :data-focused="isFocused"
     :required="required"
-    :id="id"
     :name="name"
     :type="type"
     :disabled="disabled"

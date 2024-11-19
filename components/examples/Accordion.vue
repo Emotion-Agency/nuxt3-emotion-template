@@ -22,10 +22,11 @@ const items = [
     class="accordion"
   >
     <HeadlessAccordionItem
+      v-for="item in items"
+      :key="item.title"
+      v-slot="{ isOpened }"
       :open="false"
       class="accordion-item"
-      v-for="item in items"
-      v-slot="{ isOpened }"
     >
       <HeadlessAccordionButton class="accordion-button">
         {{ item.title }}

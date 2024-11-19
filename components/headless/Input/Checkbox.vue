@@ -17,15 +17,15 @@ const { $input, error, onBlur, onChange, onFocus, isFocused } = useCheckbox(
 
 <template>
   <input
+    :id="id"
     ref="$input"
+    v-model="model"
     type="checkbox"
     data-checkbox
-    :id="id"
     :name="name"
     :required="required"
     :data-focused="isFocused"
     :value="name"
-    v-model="model"
     :disabled="disabled"
     :autofocus="autoFocus"
     :aria-invalid="error"

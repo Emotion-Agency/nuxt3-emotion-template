@@ -84,8 +84,8 @@ onBeforeUnmount(() => {
 <template>
   <component
     :is="as"
-    data-dropdown-menu
     ref="$menuRef"
+    data-dropdown-menu
     @keydown="handleKeydown"
   >
     <slot :is-open="isOpen" />

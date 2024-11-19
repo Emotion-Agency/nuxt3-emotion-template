@@ -22,14 +22,14 @@ const { $input, error, isFocused, onBlur, onChange, onFocus } = useInput(
 
 <template>
   <textarea
+    :id="id"
     ref="$input"
+    v-model="model"
     data-input
     data-textarea
     :data-focused="isFocused"
     :required="required"
-    :id="id"
     :name="name"
-    v-model="model"
     :disabled="disabled"
     :placeholder="placeholder"
     :autofocus="autoFocus"

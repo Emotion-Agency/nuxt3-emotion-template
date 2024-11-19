@@ -102,13 +102,13 @@ onUnmounted(() => {
     <div
       ref="tooltipTrigger"
       data-tooltip-trigger
+      tabindex="0"
+      aria-describedby="tooltip"
       @mouseenter="showTooltip"
       @mouseleave="hideTooltip"
       @focus="showTooltip"
       @blur="hideTooltip"
       @keydown="handleKeydown"
-      tabindex="0"
-      aria-describedby="tooltip"
     >
       <slot name="trigger" />
     </div>

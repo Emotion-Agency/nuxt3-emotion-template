@@ -8,9 +8,9 @@ const checked = ref(false)
       <div class="checkbox-wrapper">
         <HeadlessInputCheckbox
           id="checkbox"
+          v-model="checked"
           name="checkbox"
           class="checkbox"
-          v-model="checked"
           :required="true"
         />
 

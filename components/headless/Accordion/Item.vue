@@ -26,7 +26,7 @@ const isOpened = inject('isOpened') as (index: number) => boolean
 </script>
 
 <template>
-  <component ref="$el" :is="as" role="region" :disabled="disabled">
+  <component :is="as" ref="$el" role="region" :disabled="disabled">
     <slot :is-opened="isOpened(idx)" />
   </component>
 </template>

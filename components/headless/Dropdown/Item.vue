@@ -20,11 +20,11 @@ onMounted(() => {
 
 <template>
   <li
+    ref="itemRef"
     role="menuitem"
     tabindex="0"
     @click="handleClick"
     @keydown.enter.prevent="handleClick"
-    ref="itemRef"
     @focus="setActive"
   >
     <slot />

@@ -37,10 +37,10 @@ function handleKeydown(event: KeyboardEvent) {
 
 <template>
   <component
-    :key="tabId"
     :is="as"
-    :role="'tab'"
     :id="tabId"
+    :key="tabId"
+    :role="'tab'"
     :aria-disabled="disabled"
     :disabled="disabled"
     :class="{ 'is-active': isSelected }"

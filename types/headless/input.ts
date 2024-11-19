@@ -22,13 +22,11 @@ export interface IInputContext extends IInput {
 
 export type TInputEmits = {
   (event: 'input', value: iInputData): void
-  (event: 'focus'): void
-  (event: 'blur'): void
+  (event: 'focus' | 'blur'): void
   (event: 'error', error: string): void
 }
 
-export interface ICheckbox
-  extends Omit<IInput, 'type' | 'placeholder' | 'validators'> {}
+export type ICheckbox = Omit<IInput, 'type' | 'placeholder' | 'validators'>
 
 export interface iCheckboxData {
   id: string

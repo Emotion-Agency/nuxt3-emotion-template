@@ -48,13 +48,13 @@ const onNumberChange = () => {
 
 <template>
   <input
+    :id="id"
     ref="$input"
-    type="number"
     v-model="model"
+    type="number"
     data-input
     :data-focused="isFocused"
     :required="required"
-    :id="id"
     :name="name"
     :disabled="disabled"
     :placeholder="placeholder"

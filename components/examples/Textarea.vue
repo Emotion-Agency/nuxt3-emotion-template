@@ -14,13 +14,13 @@ const input = reactive({
 <template>
   <HeadlessInputTextarea
     :id="input.id"
+    v-model="input.value"
     :name="input.name"
     :value="input.value"
     :placeholder="input.placeholder"
     :required="input.required"
     :validators="input.validators"
     :disable-resize="true"
-    v-model="input.value"
     type="textarea"
     class="input"
   />

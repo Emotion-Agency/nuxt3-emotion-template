@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   css: ['~/assets/styles/index.scss'],
 
   app: {
-    pageTransition,
+    pageTransition: pageTransition as any,
   },
 
   typescript: {
@@ -24,5 +24,11 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@vueuse/nuxt', 'nuxt-lucide-icons'],
+  eslint: {
+    config: {
+      typescript: true,
+    },
+  },
+
+  modules: ['@vueuse/nuxt', '@nuxt/eslint', 'nuxt-lucide-icons'],
 })

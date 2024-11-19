@@ -20,10 +20,10 @@ import Tooltip from '~/components/headless/Tooltip.vue'
     <ExamplesField />
     <ExamplesPasswordField />
     <HeadlessInputNumber
+      id="number"
       style="min-width: 300px"
       :min="1"
       :max="10"
-      id="number"
       placeholder="Number"
       class="input"
     />

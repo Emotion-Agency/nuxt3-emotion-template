@@ -25,18 +25,18 @@ const onInput = (data: iInputData) => {
     <HeadlessInputLabel>{{ input.name }}</HeadlessInputLabel>
     <HeadlessInput
       :id="input.id"
+      v-model="input.value"
       :name="input.name"
       :type="input.type"
-      v-model="input.value"
       :placeholder="input.placeholder"
       :required="input.required"
       :validators="input.validators"
-      @input="onInput"
       class="input"
+      @input="onInput"
     />
     <HeadlessInputValidationMessage
-      class="validation-message"
       v-if="field.error"
+      class="validation-message"
     >
       {{ field.error }}
     </HeadlessInputValidationMessage>

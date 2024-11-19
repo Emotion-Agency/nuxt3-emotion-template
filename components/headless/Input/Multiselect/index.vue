@@ -15,14 +15,8 @@ const emit = defineEmits<TSelectEmits>()
 
 const model = defineModel<IOption[]>()
 
-const {
-  error,
-  $selectContainer,
-  isOpen,
-  options,
-  toggleDropdown,
-  selectOption,
-} = useSelect(props, emit, model)
+const { $selectContainer, isOpen, options, toggleDropdown, selectOption } =
+  useSelect(props, emit, model)
 
 provide('registerOption', (option: ISelectOption) => {
   // @ts-ignore
@@ -61,9 +55,9 @@ defineExpose({
 <template>
   <component
     :is="as"
+    ref="$selectContainer"
     data-select
     tabindex="0"
-    ref="$selectContainer"
     role="combobox"
     :aria-expanded="isOpen"
     :disabled="disabled"

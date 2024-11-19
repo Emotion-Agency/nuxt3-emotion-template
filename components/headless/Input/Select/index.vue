@@ -80,9 +80,9 @@ defineExpose({
 <template>
   <component
     :is="as"
+    ref="$selectContainer"
     data-select
     tabindex="0"
-    ref="$selectContainer"
     role="combobox"
     :aria-expanded="isOpen"
     :aria-activedescendant="model?.value"

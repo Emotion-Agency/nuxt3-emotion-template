@@ -22,8 +22,8 @@ const isActive = computed(() => activeTab.value === index.value)
 <template>
   <component
     :is="as"
-    :id="panelId"
     v-if="isActive"
+    :id="panelId"
     data-tabs-item
     role="tabpanel"
     :class="{ 'is-active': isActive }"

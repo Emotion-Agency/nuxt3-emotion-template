@@ -54,8 +54,8 @@ const isOpened = inject('isOpened') as (index: number) => boolean
 
 <template>
   <component
-    ref="$el"
     :is="as"
+    ref="$el"
     :aria-expanded="isOpened(idx)"
     @click="togglePanel(idx)"
     @keydown="handleKeydown($event, idx)"
