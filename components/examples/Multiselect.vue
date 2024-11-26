@@ -107,6 +107,7 @@ const onBackSpace = () => {
   max-width: 500px;
   border: 1px solid #ced4da;
   border-radius: 4px;
+  padding-right: 8px;
   background-color: #fff;
   transition:
     border-color 0.2s,
@@ -114,6 +115,11 @@ const onBackSpace = () => {
 
   &:hover {
     border-color: #bdbdbd;
+  }
+
+  &:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
   }
 
   &__button {
@@ -185,6 +191,7 @@ const onBackSpace = () => {
   flex: 1 1 auto;
   padding: 12px;
   width: var(--width);
+  outline: none;
   background-color: transparent;
 }
 

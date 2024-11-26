@@ -7,15 +7,17 @@
     <Teleport to="#teleports">
       <Transition name="fade">
         <HeadlessDropdownItems position-x="right" class="dropdown-items">
-          <HeadlessDropdownItem class="dropdown-item"
-            >Option 1</HeadlessDropdownItem
-          >
-          <HeadlessDropdownItem class="dropdown-item"
-            >Option 2</HeadlessDropdownItem
-          >
-          <HeadlessDropdownItem class="dropdown-item"
-            >Option 3</HeadlessDropdownItem
-          >
+          <div class="items-wrapper">
+            <HeadlessDropdownItem class="dropdown-item"
+              >Option 1</HeadlessDropdownItem
+            >
+            <HeadlessDropdownItem class="dropdown-item"
+              >Option 2</HeadlessDropdownItem
+            >
+            <HeadlessDropdownItem class="dropdown-item"
+              >Option 3</HeadlessDropdownItem
+            >
+          </div>
         </HeadlessDropdownItems>
       </Transition>
     </Teleport>
@@ -55,14 +57,19 @@
   right: 200px;
 }
 
-.dropdown-items {
-  width: 280px;
+.items-wrapper {
   background-color: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
   border: 1px solid #e0e0e0;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.dropdown-items {
+  padding-top: 20px;
   z-index: 1000;
+  width: 280px;
 }
 
 .dropdown-item {

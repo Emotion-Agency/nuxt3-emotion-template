@@ -14,11 +14,14 @@ onMounted(() => {
 
   registerTrigger($triggerRef.value as HTMLElement)
 })
+
+const id = inject('id') as string
 </script>
 
 <template>
   <button
     ref="$triggerRef"
+    :data-dropdown-trigger="id"
     @click="trigger === 'click' && toggleDropdown()"
     @keydown.space.prevent="toggleDropdown()"
     @keydown.enter.prevent="toggleDropdown()"

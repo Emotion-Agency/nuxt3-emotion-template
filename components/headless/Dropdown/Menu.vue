@@ -16,6 +16,9 @@ const activeIndex = ref(-1)
 const menuItems = ref<HTMLElement[]>([])
 const $menuRef: MaybeElementRef<MaybeElement> = ref(null)
 const $triggerRef = ref<HTMLElement | null>(null)
+const $wrapperRef = ref<HTMLElement | null>(null)
+
+const id = useId()
 
 function toggleDropdown(value?: boolean) {
   if (value === undefined) {
@@ -58,16 +61,28 @@ provide('registerItem', (item: HTMLElement) => {
   menuItems.value.push(item)
 })
 
+provide('registerWrapper', (item: HTMLElement) => {
+  $wrapperRef.value = item
+})
+
 provide('trigger', props.trigger)
 provide('triggerEl', $triggerRef)
+
 provide('registerTrigger', registerTrigger)
+provide('id', id)
 
 onClickOutside($menuRef, closeDropdown)
 
 const onMouseMove = e => {
   if (props.trigger !== 'hover') return
+
   const isShowDropdown =
-    e.target === $triggerRef.value || menuItems.value?.includes(e.target)
+    e.target === $triggerRef.value ||
+    $triggerRef.value?.contains(e.target) ||
+    ($menuRef.value as HTMLElement)?.contains(e.target) ||
+    menuItems.value.some(item => item.contains(e.target)) ||
+    $wrapperRef.value?.contains(e.target) ||
+    $wrapperRef.value === e.target
 
   toggleDropdown(isShowDropdown)
 }
@@ -85,7 +100,7 @@ onBeforeUnmount(() => {
   <component
     :is="as"
     ref="$menuRef"
-    data-dropdown-menu
+    :data-dropdown-menu="id"
     @keydown="handleKeydown"
   >
     <slot :is-open="isOpen" />
