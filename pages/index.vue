@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Tooltip from '~/components/headless/Tooltip.vue'
+import Tooltip from '~/components/headless/Tooltip/Tooltip.vue'
 </script>
 
 <template>
@@ -14,7 +14,6 @@ import Tooltip from '~/components/headless/Tooltip.vue'
   >
     <h1 class="22">Hello from Emotion!</h1>
 
-    <HeadlessLoader />
     <ExamplesDialog />
     <ExamplesTabs />
     <ExamplesField />
