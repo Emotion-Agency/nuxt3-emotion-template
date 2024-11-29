@@ -1,6 +1,3 @@
-Here's a general `README.md` for your headless UI library for Vue 3/Nuxt 3. It includes an introduction, features, installation instructions, usage examples, and contribution guidelines.
-
-````md
 # Headless UI Library for Vue 3/Nuxt 3
 
 A lightweight, accessible, and customizable headless UI component library for Vue 3 and Nuxt 3 applications. This library provides unstyled, highly customizable components that you can style and structure according to your project's design requirements.
@@ -46,6 +43,7 @@ npm install @your-organization/headless-ui
 # or
 yarn add @your-organization/headless-ui
 ```
+
 ````
 
 ## Usage
@@ -164,3 +162,4 @@ For detailed usage, examples, and API reference, visit the [official documentati
 9. **License** - Specifies the license under which the library is distributed.
 
 ```
+````
