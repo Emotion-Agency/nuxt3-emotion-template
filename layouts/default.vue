@@ -19,6 +19,12 @@ useHead({
     id: 'scroll-container',
   },
 })
+
+const { toast } = useToasts()
+
+onMounted(() => {
+  toast.success('Welcome to Emotion template!')
+})
 </script>
 
 <template>
@@ -36,5 +42,6 @@ useHead({
     <SmoothScroll>
       <slot />
     </SmoothScroll>
+    <ToastGroup />
   </div>
 </template>

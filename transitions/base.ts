@@ -1,4 +1,4 @@
-import type { TransitionProps } from 'nuxt/dist/app/compat/capi'
+import type { TransitionProps } from 'vue'
 
 export const pageTransition: TransitionProps = {
   duration: 250,

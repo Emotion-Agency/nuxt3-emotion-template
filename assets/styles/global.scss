@@ -14,6 +14,8 @@ html {
 body {
   color: var(--black);
   font-size: 1rem;
+  padding-bottom: 200px;
+  overflow: hidden;
   position: relative;
   font-family: sans-serif;
   overscroll-behavior-y: none;
@@ -70,4 +72,47 @@ h1 {
 .page-enter,
 .page-leave-to {
   opacity: 0;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+
+  &:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.2);
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.validation-message {
+  color: #d32f2f;
+  font-size: 0.875rem;
+  margin-top: 4px;
 }
