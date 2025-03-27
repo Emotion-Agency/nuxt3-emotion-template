@@ -14,52 +14,75 @@ const props = withDefaults(defineProps<ISelect>(), {
 const emit = defineEmits<TSelectEmits>()
 
 const model = defineModel<IOption>()
+const focusedIdx = ref(-1)
+
+provide(
+  'focused',
+  computed(() => {
+    return options.value[focusedIdx.value]
+  })
+)
 
 const { $selectContainer, isOpen, options, selectOption, toggleDropdown } =
   useSelect(props, emit, model)
 
 provide('registerOption', (option: ISelectOption) => {
+  const duplicate = options.value.find(opt => opt.value === option.value)
+  if (duplicate) {
+    !props.skipDuplicateWarn &&
+      console.warn(duplicate.value, 'Option already registered')
+    return
+  }
+
   // @ts-ignore
-  options.push(option)
+  options.value = [...options.value, option]
 })
+
+provide('unregisterOption', (option: HTMLElement) => {
+  options.value = options.value.filter(opt => opt.el !== option)
+})
+
+provide('options', options)
+
 provide('selectOption', selectOption)
 provide('selectedOption', model)
 provide('isOpen', isOpen)
 
 function handleKeydown(event: KeyboardEvent) {
+  event.stopPropagation()
+
   if (event.key === 'Escape') {
     isOpen.value = false
+    focusedIdx.value = -1
   }
   if (event.key === 'ArrowDown') {
-    const currentIndex = options.findIndex(
-      option => option.value === model.value?.value
-    )
-    const nextIndex = currentIndex + 1
-    const nextOption = options[nextIndex]
+    focusedIdx.value = focusedIdx.value + 1
 
-    if (nextOption) {
-      model.value = nextOption
-      nextOption.el?.focus()
+    const nextOption = options.value[focusedIdx.value]
+
+    if (!nextOption) {
+      focusedIdx.value = 0
     }
   }
 
   if (event.key === 'ArrowUp') {
-    const currentIndex = options.findIndex(
-      option => option.value === model.value?.value
-    )
-    const prevIndex = currentIndex - 1
-    const prevOption = options[prevIndex]
+    focusedIdx.value = focusedIdx.value - 1
 
-    if (prevOption) {
-      model.value = prevOption
-      prevOption.el?.focus()
+    const prevOption = options.value[focusedIdx.value]
+
+    if (!prevOption) {
+      focusedIdx.value = options.value.length - 1
     }
   }
 
   if (event.key === 'Enter') {
-    event.preventDefault()
-    selectOption(model.value)
     isOpen.value = !isOpen.value
+
+    const focusedOption = options.value[focusedIdx.value]
+    if (!focusedOption) return
+
+    selectOption(focusedOption)
+    focusedIdx.value = -1
   }
 
   if (event.key === 'Tab') {
@@ -68,10 +91,13 @@ function handleKeydown(event: KeyboardEvent) {
 
   if (event.key === ' ') {
     event.preventDefault()
+
+    focusedIdx.value = -1
     isOpen.value = !isOpen.value
   }
 }
 
+provide('toggleDropdown', toggleDropdown)
 defineExpose({
   toggleDropdown,
 })
@@ -80,6 +106,7 @@ defineExpose({
 <template>
   <component
     :is="as"
+    :id="id"
     ref="$selectContainer"
     data-select
     tabindex="0"
@@ -87,7 +114,6 @@ defineExpose({
     :aria-expanded="isOpen"
     :aria-activedescendant="model?.value"
     :disabled="disabled"
-    @click="toggleDropdown"
     @keydown="handleKeydown"
   >
     <slot />

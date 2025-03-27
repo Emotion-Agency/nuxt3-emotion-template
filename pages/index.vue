@@ -29,7 +29,6 @@ import Tooltip from '~/components/headless/Tooltip/Tooltip.vue'
     <ExamplesTextarea :rows="10" />
     <ExamplesCheckbox />
     <ExamplesSelect />
-    <ExamplesMultiselect />
     <ExamplesDropdown />
 
     <Tooltip position="right">

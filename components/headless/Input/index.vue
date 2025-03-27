@@ -11,11 +11,8 @@ const emit = defineEmits<TInputEmits>()
 
 const model = defineModel<string>()
 
-const { $input, error, isFocused, onBlur, onChange, onFocus, reset } = useInput(
-  props,
-  emit,
-  model
-)
+const { id, $input, error, isFocused, onBlur, onChange, onFocus, reset } =
+  useInput(props, emit, model)
 
 defineExpose({
   reset,
