@@ -6,7 +6,7 @@ export interface iInputData {
 
 export interface IInput {
   required?: boolean
-  id: string
+  id?: string
   name?: string
   type?: string
   disabled?: boolean
@@ -47,12 +47,13 @@ export interface iSelectData {
 
 export interface ISelect {
   as?: string
-  id: string
+  id?: string
   disabled?: boolean
   required?: boolean
   autoFocus?: boolean
   name?: string
   validators?: Array<(value: string) => boolean | string>
+  skipDuplicateWarn?: boolean
 }
 
 export interface IOption {
@@ -62,9 +63,11 @@ export interface IOption {
 
 export interface ISelectOption extends IOption {
   el: Ref<HTMLElement>
+  label: string
+  value: string
 }
 
 export type TSelectEmits = {
-  (event: 'change', value: iSelectData | iSelectData[]): void
+  (event: 'change', value: iSelectData): void
   (event: 'error', error: string): void
 }

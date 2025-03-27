@@ -4,17 +4,13 @@ import { createFocusTrap, type FocusTrap } from 'focus-trap'
 interface IProps {
   isOpen: boolean
   duration?: number
-  transitionName?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   duration: 0.3,
-  transitionName: 'fade',
 })
 
 const emit = defineEmits(['close'])
-
-const isActualOpen = ref(props.isOpen)
 
 const dialogId = `dialog-${useId()}`
 const $el = ref<HTMLElement | null>(null)
@@ -33,9 +29,7 @@ const registerWindow = ($el: Ref<HTMLElement>) => {
 provide('registerWindow', registerWindow)
 provide('dialogId', dialogId)
 
-onMounted(() => {
-  trap.value = createFocusTrap($el.value as HTMLElement)
-})
+onMounted(() => {})
 
 watch(
   () => props.isOpen,
@@ -46,6 +40,7 @@ watch(
 
     if (value) {
       setTimeout(() => {
+        trap.value = createFocusTrap($el.value as HTMLElement)
         trap.value?.activate()
       }, 0)
     } else {
@@ -57,14 +52,6 @@ watch(
 watch(
   () => props.isOpen,
   () => {
-    if (props.isOpen) {
-      isActualOpen.value = props.isOpen
-    } else {
-      setTimeout(() => {
-        isActualOpen.value = props.isOpen
-      }, props.duration * 1000)
-    }
-
     setTimeout(() => {
       $window.value?.classList.toggle('is-open', props.isOpen)
     }, 1)
@@ -73,30 +60,28 @@ watch(
 </script>
 
 <template>
-  <Transition :name="transitionName">
-    <div
-      v-show="isActualOpen"
-      ref="$el"
-      :data-open="isOpen"
-      role="dialog"
-      :aria-modal="true"
-      :aria-labelledby="dialogId"
-      v-bind="$attrs"
-      @keydown.esc="emit('close')"
-    >
-      <button
-        ref="$modalFocusGuard"
-        style="
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 1px;
-          height: 1px;
-          opacity: 0;
-        "
-      ></button>
+  <div
+    v-if="isOpen"
+    ref="$el"
+    :data-open="isOpen"
+    role="dialog"
+    :aria-modal="true"
+    :aria-labelledby="dialogId"
+    v-bind="$attrs"
+    @keydown.esc="emit('close')"
+  >
+    <button
+      ref="$modalFocusGuard"
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+      "
+    ></button>
 
-      <slot />
-    </div>
-  </Transition>
+    <slot />
+  </div>
 </template>

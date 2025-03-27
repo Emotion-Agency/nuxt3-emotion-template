@@ -8,7 +8,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "fi": "node cli/fontsInclude.cjs && prettier --write ./composables/fonts.ts"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.7.1",

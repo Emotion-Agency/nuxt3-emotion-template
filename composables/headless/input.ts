@@ -13,6 +13,8 @@ export const useInput = (
     inputCtx.value = { ...inputCtx.value, ...props }
   }
 
+  const id = computed(() => props.id || `input-${useId()}`)
+
   const $input = ref<HTMLInputElement | null>(null)
 
   const error = ref<boolean | string>(false)
@@ -37,7 +39,7 @@ export const useInput = (
     validate()
 
     emit('input', {
-      id: props.id,
+      id: id.value,
       value: model.value,
       error: !!error.value,
     } as iInputData)
@@ -69,7 +71,7 @@ export const useInput = (
   const updateFields = () => {
     if (model.value.trim() !== '') {
       emit('input', {
-        id: props.id,
+        id: id.value,
         value: model.value,
         error: error.value,
       } as iInputData)
@@ -77,6 +79,7 @@ export const useInput = (
   }
 
   return {
+    id,
     $input,
     error,
     isFocused,
