@@ -25,6 +25,8 @@
 $maxWidth: 1920;
 $minWidth: 375;
 
+$base-rem-unit: 16;
+
 //breakpoints
 $uls: 2100px;
 $ls: 1366px;
@@ -40,3 +42,5 @@ $easing: cubic-bezier(0.16, 1, 0.3, 1);
 $g-offset: vw(56);
 $g-sm: 32px;
 $g-s: 20px;
+
+$base-rem-unit: 16;

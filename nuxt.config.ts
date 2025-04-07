@@ -30,5 +30,5 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@vueuse/nuxt', '@nuxt/eslint', 'nuxt-lucide-icons'],
+  modules: ['@vueuse/nuxt', '@nuxt/eslint'],
 })

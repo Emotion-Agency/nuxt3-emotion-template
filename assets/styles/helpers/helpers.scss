@@ -97,7 +97,7 @@
   );
 }
 
-@function vw($px, $screen: 1920) {
+@function vw($px, $screen: $maxWidth) {
   $inVW: math.div(
       $px,
       number(str-replace(transform-number-to-string($screen), 'px', ''))
@@ -105,7 +105,7 @@
   @return #{$inVW}vw;
 }
 
-@function vh($px, $screen: 1080) {
+@function vh($px, $screen: $maxHeight) {
   $inVH: math.div(
       $px,
       number(str-replace(transform-number-to-string($screen), 'px', ''))
@@ -113,6 +113,14 @@
   @return #{$inVH}vh;
 }
 
+@function rem($px) {
+  @return calc($px * 1rem / $base-rem-unit);
+}
+
 @function aspect($width, $height) {
   @return math.div($width, $height);
+}
+
+@function rem($px) {
+  @return calc($px * 1rem / $base-rem-unit);
 }

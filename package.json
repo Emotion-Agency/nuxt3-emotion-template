@@ -29,8 +29,8 @@
     "@vueuse/nuxt": "^11.2.0",
     "focus-trap": "^7.6.1",
     "gsap": "^3.12.5",
+    "lucide-vue-next": "^0.487.0",
     "nuxt": "^3.13.2",
-    "nuxt-lucide-icons": "^1.0.5",
     "vue": "latest"
   }
 }

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { iInputData } from '~/types/headless/input'
+import { LucideEye, LucideEyeOff } from 'lucide-vue-next'
 
 const input = reactive({
   id: 'password',
