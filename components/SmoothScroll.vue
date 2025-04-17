@@ -3,7 +3,7 @@ import EmotionScroll from '@emotionagency/emotion-scroll'
 import { raf } from '@emotionagency/utils'
 onMounted(() => {
   window.escroll = new EmotionScroll({
-    breakpoint: 1060,
+    breakpoint: 960,
     passive: false,
     friction: 0.07,
     stepSize: 0.9,
@@ -22,7 +22,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #scroll-container {
   overflow: hidden;
   will-change: scroll-position;

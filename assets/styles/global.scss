@@ -20,11 +20,10 @@ body {
   color: var(--black);
   font-size: 1rem;
   padding-bottom: 200px;
-  overflow: hidden;
   position: relative;
   font-family: sans-serif;
   overscroll-behavior-y: none;
-  height: fit-content;
+  overflow: hidden;
   @include smooth-font;
 
   @media (max-width: $br1) {
