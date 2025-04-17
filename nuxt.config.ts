@@ -1,3 +1,4 @@
+import { encodeConfig } from './cli/decodeEnv'
 import { pageTransition } from './transitions/base'
 
 export default defineNuxtConfig({
@@ -38,4 +39,12 @@ export default defineNuxtConfig({
   },
 
   modules: ['@vueuse/nuxt', '@nuxt/eslint'],
+
+  runtimeConfig: {
+    public: {
+      value: encodeConfig({
+        ENVIROMENT: process.env.NODE_ENV,
+      }),
+    },
+  },
 })
