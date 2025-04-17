@@ -4,6 +4,8 @@
 @use 'sass:string';
 @use 'sass:math';
 
+@use './variables' as *;
+
 @function str-replace($string, $search, $replace: '') {
   $index: string.index($string, $search);
 
