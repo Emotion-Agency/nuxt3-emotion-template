@@ -1,4 +1,10 @@
-# Nuxt 3 Minimal Starter
+# You can use this template for your project via CLI
+
+```bash
+npx @emotionagency/template <your-app-name>
+```
+
+# EmotionNuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
