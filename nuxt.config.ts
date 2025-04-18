@@ -32,12 +32,6 @@ export default defineNuxtConfig({
     },
   },
 
-  build: {
-    transpile: [
-      process.env.NODE_ENV === 'production' ? '@emotionagency/utils' : null,
-    ],
-  },
-
   modules: ['@vueuse/nuxt', '@nuxt/eslint'],
 
   runtimeConfig: {
