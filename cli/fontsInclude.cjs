@@ -34,7 +34,7 @@ function fontsStyle() {
   const path2 = './composables/fonts.ts'
   const buildFontsPath = './public/fonts'
 
-  fs.writeFile(path, '', cb)
+  fs.writeFile(path, '@use "./mixins" as *;\n', cb)
   fs.writeFile(path2, '', cb)
   return fs.readdir(buildFontsPath, function (_, fonts) {
     if (fonts) {
@@ -48,7 +48,7 @@ function fontsStyle() {
               path2,
               `\r\n]\r\nexport const useFonts = () => {
               useHead({
-                link: [...fontsMetaList],
+                link: [...fontsMetaList] as any[],
               })
             }`,
               cb
@@ -64,7 +64,7 @@ function fontsStyle() {
         path2,
         `\r\nconst fontsMetaList = []\r\nexport const useFonts = () => {
         useHead({
-          link: [...fontsMetaList],
+          link: [...fontsMetaList] as any[],
         })
       }`,
         cb
