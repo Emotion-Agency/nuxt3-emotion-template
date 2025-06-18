@@ -1,0 +1,78 @@
+@use './helpers' as *;
+
+.w-100 {
+  width: 100%;
+}
+.w-fit {
+  width: fit-content;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+$spacings: (
+  1: 4,
+  2: 8,
+  3: 12,
+  4: 16,
+  5: 20,
+  6: 24,
+  7: 28,
+  8: 32,
+);
+
+$spacing-utilities: (
+  mt: margin-top,
+  mb: margin-bottom,
+  ml: margin-left,
+  mr: margin-right,
+  pt: padding-top,
+  pb: padding-bottom,
+  pl: padding-left,
+  pr: padding-right,
+  gap: gap,
+);
+
+@mixin spacing-utils($utils, $steps) {
+  @each $prefix, $prop in $utils {
+    @each $key, $value in $steps {
+      .#{$prefix}-#{$key} {
+        #{$prop}: rem($value);
+      }
+    }
+  }
+}
+
+@include spacing-utils($spacing-utilities, $spacings);
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.flex-column {
+  flex-direction: column;
+}
