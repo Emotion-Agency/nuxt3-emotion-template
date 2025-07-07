@@ -84,6 +84,14 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 Check documentation here: https://vueuse.org/guide/
 
-## Also this template has own headless ui component
+## Also this template has headless ui libary @reka-ui
 
-Details here: https://github.com/Emotion-Agency/nuxt3-emotion-template/components/headless
+Details here: https://reka-ui.com/
+
+## Icons library:
+
+https://nuxt.com/modules/icon
+
+## Form validation:
+
+https://vuelidate-next.netlify.app/

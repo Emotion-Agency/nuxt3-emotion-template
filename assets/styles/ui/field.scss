@@ -1,0 +1,35 @@
+@use '../helpers' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+}
+
+.field__control {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: rem(36);
+  overflow: hidden;
+  border: rem(1) solid var(--border);
+  border-radius: var(--rounded-full);
+
+  transition: border-color 0.3s $easing;
+
+  &:has(.input:focus) {
+    border: rem(1) solid var(--primary);
+  }
+  &:hover {
+    border: rem(1) solid var(--primary);
+  }
+  &--number {
+    padding-left: rem(12);
+    padding-right: rem(12);
+  }
+
+  &--textarea {
+    height: rem(80);
+    border-radius: var(--rounded-lg);
+  }
+}

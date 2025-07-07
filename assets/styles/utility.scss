@@ -19,6 +19,14 @@
   margin: auto;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
 $spacings: (
   1: 4,
   2: 8,
@@ -75,4 +83,35 @@ $spacing-utilities: (
 
 .flex-column {
   flex-direction: column;
+}
+
+.shrink {
+  flex-shrink: 1;
+}
+
+.no-shrink {
+  flex-shrink: 0;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.no-grow {
+  flex-grow: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

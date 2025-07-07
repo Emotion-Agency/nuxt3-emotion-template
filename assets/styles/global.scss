@@ -3,7 +3,7 @@
 * {
   &::selection {
     color: white;
-    background: #ece5df;
+    background: var(--primary);
   }
 }
 
@@ -17,9 +17,9 @@ html {
 }
 
 body {
-  color: var(--black);
+  color: var(--foreground);
+
   font-size: 1rem;
-  padding-bottom: 200px;
   position: relative;
   font-family: sans-serif;
   overscroll-behavior-y: none;
@@ -32,8 +32,8 @@ body {
 }
 
 h1 {
-  font-size: vw(52);
-  margin-top: vw(100);
+  font-size: rem(52);
+  margin-top: rem(100);
 }
 
 .e-landscape {
@@ -91,32 +91,10 @@ h1 {
   opacity: 0;
 }
 
-.input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  font-size: 1rem;
-  transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
-
-  &:focus {
-    border-color: #1976d2;
-    box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.2);
-  }
-}
-
-label {
+.iconify {
+  width: 1em;
+  height: 1em;
+  font-size: rem(16);
   display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #333;
-}
-
-.validation-message {
-  color: #d32f2f;
-  font-size: 0.875rem;
-  margin-top: 4px;
+  flex-shrink: 0;
 }

@@ -1,29 +1,56 @@
 :root {
-  --black: #212022;
-  --bg: #f4f4f4;
-  --white: #ffffff;
-  --red: #e73737;
-  --accent: #9047ff;
-  --vh: 100vh;
+  --background: #f8f8f8;
+  --bg-muted-50: rgba(#f8f8f8, 0.5);
+  --foreground: #000;
+  --foreground-muted: #64698b;
+  --border: #e2e4f0;
+  --card: #fff;
+  --muted: #f1f2f9;
+  --dark: #2c2c2c;
+  --secondary: #f1f2f9;
+  --primary: #9047ff;
+  --secondary-button: #f1f2f9;
 
-  --gray-100: #f8f9fa;
-  --gray-200: #e9ecef;
-  --gray-300: #dee2e6;
-  --gray-400: #ced4da;
-  --gray-500: #ced4da;
-  --gray-600: #6c757d;
-  --gray-700: #495057;
-  --gray-800: #343a40;
-  --gray-900: #212529;
-  --status-success: #28a745;
-  --status-danger: #dc3545;
-  --status-warning: #ffc107;
-  --status-info: #3e3e3e;
+  --status-danger: #ff3b30;
+  --status-danger-active: #c91b11;
+  --status-success: #319f43;
+
+  --backdrop: rgba(0, 0, 0, 0.8);
+
+  --rounded-sm: 4px;
+  --rounded-md: 8px;
+  --rounded-lg: 12px; // default
+  --rounded-xl: 16px;
+  --rounded-full: 9999px;
+
+  --card-shadow-color: rgba(0, 0, 0, 0.05);
+
+  --card-shadow-b: 0px 1px 2px 0px var(--card-shadow-color);
+  --card-shadow:
+    0px 1px 2px 0px var(--card-shadow-color),
+    0px -1px 2px 0px var(--card-shadow-color);
+
+  --card-shadow-md:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+}
+
+.dark {
+  --background: #121212;
+  --bg-muted-50: rgba(#121212, 0.5);
+  --foreground: #fff;
+  --foreground-muted: #a3a6c1;
+  --border: #30343f;
+  --card: #181818;
+  --muted: #25282e;
+  --dark: #e5e5e5;
+  --secondary: #25282e;
+  --card-shadow-color: rgba(255, 255, 255, 0.05);
 }
 
 //screen config
-$maxWidth: 1920;
-$minWidth: 375;
+$maxWidth: 1440;
+$minWidth: 390;
 
 $base-rem-unit: 16;
 
@@ -32,7 +59,7 @@ $uls: 2100px;
 $ls: 1366px;
 $br1: 960px;
 $br2: 768px;
-$br3: 560px;
+$br3: 660px;
 $br4: 460px;
 
 //easings

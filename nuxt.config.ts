@@ -32,7 +32,13 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@vueuse/nuxt', '@nuxt/eslint'],
+  modules: ['@vueuse/nuxt', '@nuxt/eslint', '@nuxt/icon'],
+
+  icon: {
+    serverBundle: {
+      collections: ['lucide'],
+    },
+  },
 
   runtimeConfig: {
     public: {
